@@ -10,7 +10,8 @@ public:
     Graph();
     Station *findStation(std::string name) const;
     bool addStation(Station station);
-    bool addNetwork(std::string origStationName, Network network);
+    bool addNetwork(std::string origStationName, std::string destStationName, int capacity, Service service);
+    std::vector<Station *> getStationSet() const;
 };
 
 
