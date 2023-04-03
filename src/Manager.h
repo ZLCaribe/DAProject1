@@ -9,8 +9,16 @@ private:
 public:
     Manager();
     void readFiles();
+
     void mainMenu();
+    void basicMetricsMenu();
+
+    void costOptmization();
+    void testLineFailures();
+
+    int inputStation(Station *station, std::string message);
 };
+
 
 
 #endif //PROJECT1_MANAGER_H
