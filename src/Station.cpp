@@ -88,9 +88,13 @@ Network *Station::addIncoming(Network *incomingNetwork) {
     this->incoming.push_back(incomingNetwork);
 }
 
+Network *Station::addAdj(Network *network) {
+    this->adj.push_back(network);
+}
+
 Station::Station(string name, string district, string municipality, string townships,
                  string line):name(std::move(name)), district(std::move(district)), municipality(std::move(municipality))
-                 , township(std::move(townships)),line(std::move(line)){}
+                 , township(std::move(townships)), line(std::move(line)){}
 
 Network *Station::addNetwork(Station *dest, int capacity, Service service) {
     //TODO lembrar de fazer bidirecional divindo flow

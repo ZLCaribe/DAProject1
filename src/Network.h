@@ -5,6 +5,11 @@
 
 enum Service{STANDARD, ALFA_PENDULAR};
 
+Service convert(std::string conversion) {
+    if(conversion == "STANDARD") return STANDARD;
+    if(conversion == "ALFA_PENDULAR") return ALFA_PENDULAR;
+}
+
 class Network {
 private:
     Service service;

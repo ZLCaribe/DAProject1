@@ -7,13 +7,14 @@ Station *Graph::findStation(std::string name) const {
 }
 
 bool Graph::addStation(Station station) {
-    //TODO
+    stationsSet[station.getName()] = &station;
 }
 
 bool Graph::addNetwork(std::string origStationName, std::string destStationName, int capacity, Service service) {
-    //TODO
+    stationsSet[origStationName]->addAdj(&Network(stationsSet[origStationName], stationsSet[destStationName], service, capacity));
+    stationsSet[destStationName]->addIncoming(&Network(stationsSet[destStationName], stationsSet[origStationName], service, capacity));
 }
 
-std::vector<Station *> Graph::getStationSet() const {
+std::unordered_map<std::string, Station *> Graph::getStationSet() const {
     return this->stationsSet;
 }

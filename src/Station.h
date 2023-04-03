@@ -28,6 +28,8 @@ public:
 
     Network *addIncoming(Network *incomingNetwork);
 
+    Network *addAdj(Network *network);
+
     bool removeNetwork(std::string destStationName ,Service service);
 
     bool removeIncoming(std::string origStationName, Service service);
