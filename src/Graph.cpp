@@ -21,7 +21,12 @@ void Graph::addStation(const std::string& name, const std::string& district, con
 
 void Graph::addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service) {
     if(this->findStation(orig) != nullptr && this->findStation(dest) != nullptr) {
-        //TODO verificar se cada um dos nodes ja tem edge para o outro
+        for(auto &a : this->stationsSet[orig]->getEdges()){
+            if(a->getDest()->getName() == dest && a->getService() == service){
+                std::cout << "duplicate edge found: " << orig << " - " << dest << std::endl;
+                return;
+            }
+        }
         this->stationsSet[orig]->addEdge(stationsSet[dest], capacity / 2, service);
         this->stationsSet[dest]->addEdge(stationsSet[orig], capacity / 2, service);
     }
