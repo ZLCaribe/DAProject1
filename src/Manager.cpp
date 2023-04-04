@@ -6,34 +6,45 @@ Manager::Manager() = default;
 
 void Manager::readFiles() {
     bool f = true;
+    std::ifstream files ("data/stations.csv");
 
-    std::ifstream files ("../data/stations.csv");
-
-    std::string entry;
+    std::string entry, temp;
     std::string first, second, third, fourth, fifth;
     
     while(getline(files, entry)) {
         if(f) {
             f = false;
         } else {
-            std::istringstream station(entry);
+            std::stringstream station(entry);
 
             getline(station, first, ',');
             getline(station, second, ',');
             getline(station, third, ',');
             getline(station, fourth, ',');
+
+            //este codigo esta feio, depois melhoro
+            if(fourth.size()>0){
+                if(fourth.at(0)=='\"'){
+                    getline(station, temp, '\"');
+                    fourth += temp;
+                    getline(station, temp, ',');
+                    fourth += temp;
+                    fourth.erase(0, 1);
+                }
+            }
+
             getline(station, fifth, '\n');
             graph.addStation(first, second, third, fourth, fifth);
         }
     }
 
     f = true;
-    std::ifstream filen ("../data/network.csv");
+    std::ifstream filen ("data/network.csv");
     while(getline(filen, entry)) {
         if(f) {
             f = false;
         } else {
-            std::istringstream station(entry);
+            std::stringstream station(entry);
 
             getline(station, first, ',');
             getline(station, second, ',');
@@ -48,6 +59,7 @@ void Manager::readFiles() {
 
 void Manager::mainMenu(){
     int i = 0, n;
+    this->readFiles();
     while(i != 5){
         cout << "------------MENU PRINCIPAL----------" << endl;
         cout << "Selecione a opcao: \n";

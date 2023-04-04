@@ -14,6 +14,8 @@ void Graph::addStation(const std::string& name, const std::string& district, con
                        const std::string& township, const std::string& line) {
     if(this->findStation(name) == nullptr) {
         this->stationsSet[name] = new Vertex(name, district, municipality, township, line);
+    }else{
+        std::cout<< "duplicate found: " << name <<std::endl;
     }
 }
 
