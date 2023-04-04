@@ -2,20 +2,21 @@
 
 Graph::Graph() {}
 
-Station *Graph::findStation(std::string name) const {
+Vertex *Graph::findStation(std::string name) const {
     //TODO
 }
 
-bool Graph::addStation(Station station) {
-    stationsSet[station.getName()] = &station;
+void Graph::addStation(std::string name, std::string district, std::string municipality, std::string township, std::string line) {
+    Vertex vertex = Vertex(name, district, municipality, township, line);
+    this->stationsSet[name] = &vertex;
 }
 
-bool Graph::addNetwork(std::string origStationName, std::string destStationName, int capacity, Service service) {
-    stationsSet[origStationName]->addAdj(&Network(stationsSet[origStationName], stationsSet[destStationName], service, capacity));
-    stationsSet[destStationName]->addIncoming(&Network(stationsSet[destStationName], stationsSet[origStationName], service, capacity));
+void Graph::addNetwork(std::string orig, std::string dest, int capacity, std::string service) {
+    this->stationsSet[orig]->addEdge(stationsSet[dest], capacity, service);
+    this->stationsSet[dest]->addEdge(stationsSet[orig], capacity, service);
 }
 
-std::unordered_map<std::string, Station *> Graph::getStationSet() const {
+std::unordered_map<std::string, Vertex *> Graph::getStationSet() const {
     return this->stationsSet;
 }
 
@@ -27,7 +28,7 @@ std::unordered_map<std::string, Station *> Graph::getStationSet() const {
  * @param t target station
  * @return maximum number of trains
  */
-double Graph::maxFlowPair(Station *s, Station *t) {
+double Graph::maxFlowPair(Vertex *s, Vertex *t) {
     //TODO
     return 0;
 }
@@ -38,7 +39,7 @@ double Graph::maxFlowPair(Station *s, Station *t) {
  * @return Stations with biggest flow capacity being the odd indexes stations the
  * source and the even indexes the target
  */
-std::vector<Station *> Graph::getPairsWithMaxFlow() {
+std::vector<Vertex *> Graph::getPairsWithMaxFlow() {
     return {};
 }
 
@@ -48,7 +49,7 @@ std::vector<Station *> Graph::getPairsWithMaxFlow() {
  * @param station
  * @return maximum number of trains
  */
-double Graph::maxStationFlow(Station *station) {
+double Graph::maxStationFlow(Vertex *station) {
     //TODO
     //Adicionar nós temporários com arestas de capacidade infinita para os nós que só tem uma aresta
     //depois usar maxFlowPair para calcular resultado
@@ -62,7 +63,7 @@ double Graph::maxStationFlow(Station *station) {
  * @param t target station
  * @return Minimum cost of the route
  */
-double Graph::costOptmizationMaxFlowPair(Station *s, Station *t) {
+double Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
     //TODO
     //Ainda não sei o algoritmo que vou usar para calcular o caminho e flow com custo mínimo
     return 0;
@@ -87,7 +88,7 @@ Graph Graph::generateSubGraph() {
  * where the first component is the name of the station and the second is how much the flow
  * of the station was reduced
  */
-std::vector<std::pair<Station, int>> Graph::mostAffectedStations(const Graph& subgraph, int k) {
+std::vector<std::pair<Vertex, int>> Graph::mostAffectedStations(const Graph& subgraph, int k) {
     //Comparar a utilização da função maxFlowPair no grafo original com a utilização dela no subgrafo
     //para todos os pares, a redução a ser colocada no vetor de retorno deve ser a soma de
     //todas as diminuições quando a estação está como destino ou origem, ordenar o vetor pelo int,

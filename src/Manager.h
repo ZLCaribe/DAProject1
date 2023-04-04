@@ -21,7 +21,7 @@ public:
     void costOptmization();
     void testLineFailures();
 
-    int inputStation(Station *station, std::string message);
+    int inputStation(Vertex *station, std::string message);
 };
 
 

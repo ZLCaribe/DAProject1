@@ -6,49 +6,43 @@ Manager::Manager() {}
 
 void Manager::readFiles() {
     bool ignore = true;
-    bool fileSwitch = false;
 
-    std::fstream file ("../stations.csv", std::ios::in);
+    std::ifstream files ("data/stations.csv");
 
     std::string entry;
     std::string first, second, third, fourth, fifth;
+    
+    while(getline(files, entry)) {
+        if(ignore) {
+            ignore = false;
+        } else {
+            std::istringstream station(entry);
 
-    if(file.is_open()) {
-        while(getline(file, entry)) {
-            if(ignore) {
-                ignore = false;
-            } else {
-                std::stringstream station(entry);
+            getline(station, first, ',');
+            getline(station, second, ',');
+            getline(station, third, ',');
+            getline(station, fourth, ',');
+            getline(station, fifth, '\n');
 
-                getline(station, first, ',');
-                getline(station, second, ',');
-                getline(station, third, ',');
-                getline(station, fourth, ',');
-                getline(station, fifth, ',');
-
-                graph.addStation(Station(first, second, third, fourth, fifth));
-            }
+            graph.addStation(first, second, third, fourth, fifth);
         }
     }
 
-    std::fstream file ("../network.csv", std::ios::in);
+    ignore = true;
 
-    if(file.is_open()) {
-        while(getline(file, entry)) {
-            if(ignore) {
-                ignore = false;
-            } else {
-                std::stringstream station(entry);
+    std::ifstream filen ("data/network.csv");
+    while(getline(filen, entry)) {
+        if(ignore) {
+            ignore = false;
+        } else {
+            std::istringstream station(entry);
 
-                getline(station, first, ',');
-                getline(station, second, ',');
-                getline(station, third, ',');
-                getline(station, fourth, ',');
+            getline(station, first, ',');
+            getline(station, second, ',');
+            getline(station, third, ',');
+            getline(station, fourth, '\n');
 
-
-
-                graph.addNetwork(first, second, stoi(third), convert(fourth));
-            }
+            graph.addNetwork(first, second, stoi(third), fourth);
         }
     }
 }
@@ -57,6 +51,7 @@ void Manager::readFiles() {
 void Manager::mainMenu(){
     int i = 0;
     while(i != 5){
+        readFiles();
         cout << "------------MENU PRINCIPAL----------" << endl;
         cout << "Selecione a opcao: \n";
         cout << "1: Ler ficheiros\n";
@@ -90,7 +85,7 @@ void Manager::mainMenu(){
 }
 
 void Manager::basicMetricsMenu() {
-    std::vector<Station *> r;
+    std::vector<Vertex *> r;
     int i = 0;
     while(i != 5){
         cout << "------------MENU MÉTRICAS BÁSICAS DE SERVIÇO----------" << endl;
@@ -104,7 +99,7 @@ void Manager::basicMetricsMenu() {
         cin >> i;
         switch (i) {
             case 1:
-                Station *orig,*dest;
+                Vertex *orig,*dest;
                 if(inputStation(orig,"Insira a estação de origem") != 0){
                     cout << "Operação cancelada" << endl;
                     continue;
@@ -128,7 +123,7 @@ void Manager::basicMetricsMenu() {
                 //TODO
                 break;
             case 4:
-                Station *m;
+                Vertex *m;
                 if(inputStation(m,"Insira a estação que deseja saber o fluxo máximo de entrada: ") != 0){
                     cout << "Operação cancelada" << endl;
                     continue;
@@ -147,7 +142,7 @@ void Manager::basicMetricsMenu() {
 }
 
 void Manager::costOptmization() {
-    Station *s, *t;
+    Vertex *s, *t;
     if(inputStation(s,"Insira a estação de origem") != 0){
         cout << "Operação cancelada" << endl;
         return;
@@ -174,10 +169,10 @@ void Manager::testLineFailures() {
     }
 }
 
-int Manager::inputStation(Station *station, string message) {
+int Manager::inputStation(Vertex *station, string message) {
     int flag = 1;
     string i;
-    Station *temp;
+    Vertex *temp;
     cout << message << endl;
     while(flag > 0){
         cout << "Nome da estação: ";
