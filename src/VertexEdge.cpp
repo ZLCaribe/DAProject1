@@ -44,9 +44,8 @@ void Vertex::setPath(Edge* path) {
     this->path = path;
 }
 
-void Vertex::addEdge(Vertex* dest, int capacity, std::string service) { 
-    Edge edge = Edge(this, dest, capacity, service);
-    edges.push_back(&edge);
+void Vertex::addEdge(Vertex* dest, int capacity, const std::string& service) {
+    edges.push_back(new Edge(this,dest,capacity,service));
 }
 
 void Vertex::deleteEdge(Edge* edge) {

@@ -22,7 +22,7 @@ class Vertex {
         void setVisited(bool visited);
         void setPath(Edge* path);
 
-        void addEdge(Vertex* dest, int capacity, std::string service);
+        void addEdge(Vertex* dest, int capacity, const std::string& service);
         void deleteEdge(Edge* edge);
 
     protected:
@@ -56,8 +56,8 @@ class Edge {
 
         std::string service;
         int capacity;
-        int occupied;
-        double flow;
+        int occupied = 0;
+        double flow = 0;
 };
 
 #endif

@@ -1,19 +1,28 @@
 #include "Graph.h"
 
-Graph::Graph() {}
+#include <utility>
 
-Vertex *Graph::findStation(std::string name) const {
-    //TODO
+Graph::Graph() = default;
+
+Vertex *Graph::findStation(const std::string& name) {
+    if (this->stationsSet.find(name) != this->stationsSet.end())
+        return this->stationsSet[name];
+    return nullptr;
 }
 
-void Graph::addStation(std::string name, std::string district, std::string municipality, std::string township, std::string line) {
-    Vertex vertex = Vertex(name, district, municipality, township, line);
-    this->stationsSet[name] = &vertex;
+void Graph::addStation(const std::string& name, const std::string& district, const std::string& municipality,
+                       const std::string& township, const std::string& line) {
+    if(this->findStation(name) == nullptr) {
+        this->stationsSet[name] = new Vertex(name, district, municipality, township, line);
+    }
 }
 
-void Graph::addNetwork(std::string orig, std::string dest, int capacity, std::string service) {
-    this->stationsSet[orig]->addEdge(stationsSet[dest], capacity, service);
-    this->stationsSet[dest]->addEdge(stationsSet[orig], capacity, service);
+void Graph::addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service) {
+    if(this->findStation(orig) != nullptr && this->findStation(dest) != nullptr) {
+        //TODO verificar se cada um dos nodes ja tem edge para o outro
+        this->stationsSet[orig]->addEdge(stationsSet[dest], capacity / 2, service);
+        this->stationsSet[dest]->addEdge(stationsSet[orig], capacity / 2, service);
+    }
 }
 
 std::unordered_map<std::string, Vertex *> Graph::getStationSet() const {
@@ -91,10 +100,10 @@ Graph Graph::generateSubGraph() {
 std::vector<std::pair<Vertex, int>> Graph::mostAffectedStations(const Graph& subgraph, int k) {
     //Comparar a utilização da função maxFlowPair no grafo original com a utilização dela no subgrafo
     //para todos os pares, a redução a ser colocada no vetor de retorno deve ser a soma de
-    //todas as diminuições quando a estação está como destino ou origem, ordenar o vetor pelo int,
-    //depois remover do vetor as que passarem do top-k
+    //todas as diminuições quando a estação está como destino ou origem, ordenar o vetor pelo inteiro,
+    //depois remover dele as que passarem do ‘top-k’
 
     //OPÇÃO 2
-    //Podemos usar a função maxStationFlow para comparar, deve ser BEM mais fácil e faz sentido tb
+    //Podemos usar a função maxStationFlow para comparar, deve ser BEM mais fácil e faz sentido também
     return {};
 }

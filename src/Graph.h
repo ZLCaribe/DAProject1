@@ -12,9 +12,10 @@ private:
     std::unordered_map<std::string, Vertex *> stationsSet;
 public:
     Graph();
-    Vertex *findStation(std::string name) const;
-    void addStation(std::string name, std::string district, std::string municipality, std::string township, std::string line);
-    void addNetwork(std::string orig, std::string dest, int capacity, std::string service);
+    Vertex *findStation(const std::string& name);
+    void addStation(const std::string& name, const std::string& district, const std::string& municipality,
+                    const std::string& township, const std::string& line);
+    void addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service);
     std::unordered_map<std::string, Vertex *> getStationSet() const;
 
     //Basic Service Metrics
