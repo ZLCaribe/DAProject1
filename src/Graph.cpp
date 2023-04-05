@@ -25,7 +25,12 @@ void Graph::addStation(const std::string& name, const std::string& district, con
 
 void Graph::addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service) {
     if(this->findStation(orig) != nullptr && this->findStation(dest) != nullptr) {
-        //TODO verificar se cada um dos nodes ja tem edge para o outro
+        for(auto &a : this->stationsSet[orig]->getEdges()){
+            if(a->getDest()->getName() == dest && a->getService() == service){
+                //std::cout << "duplicate edge found: " << orig << " - " << dest << std::endl;
+                return;
+            }
+        }
         Edge *edge1 = new Edge(this->stationsSet[orig],this->stationsSet[dest],capacity / 2, service);
         Edge *edge2 = new Edge(this->stationsSet[dest],this->stationsSet[orig],capacity / 2, service, edge1);
         edge1->setReverse(edge2);
@@ -69,13 +74,23 @@ int Graph::maxFlowPair(Vertex *s, Vertex *t) {
  * source and the even indexes the target
  */
 std::vector<Vertex *> Graph::getPairsWithMaxFlow() {
+    std::vector<Vertex *> r;
+    int f = 0;
     for(auto it1 = this->stationsSet.begin(); it1 != this->stationsSet.end(); it1++)
         if(it1 != this->stationsSet.end()) {
             for (auto it2 = ++it1; it2 != this->stationsSet.end(); it2++) {
-                //TODO
+                int n = maxFlowPair(it1->second,it2->second);
+                if(n > f){
+                    r = {};
+                    r.push_back(it1->second);
+                    r.push_back(it2->second);
+                }else if(n == f){
+                    r.push_back(it1->second);
+                    r.push_back(it2->second);
+                }else continue;
             }
         }
-    return {};
+    return r;
 }
 
 /**
