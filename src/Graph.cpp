@@ -166,7 +166,7 @@ bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
     return t->isVisited();
 }
 
-void Graph::testAndVisit(std::queue<Vertex *> q, Edge *e, Vertex *w, int residual) {
+void Graph::testAndVisit(std::queue<Vertex *>& q, Edge *e, Vertex *w, int residual) {
     if(!w->isVisited() && residual > 0){
         w->setVisited(true);
         w->setPath(e);
