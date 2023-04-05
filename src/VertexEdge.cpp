@@ -44,10 +44,6 @@ void Vertex::setPath(Edge* path) {
     this->path = path;
 }
 
-void Vertex::addEdge(Vertex* dest, int capacity, const std::string& service) {
-    edges.push_back(new Edge(this,dest,capacity,service));
-}
-
 void Vertex::deleteEdge(Edge* edge) {
     for(auto i = edges.begin(); i != edges.end(); i++) {
         if(*i == edge) {
@@ -57,8 +53,17 @@ void Vertex::deleteEdge(Edge* edge) {
     }
 }
 
-Edge::Edge(Vertex* orig, Vertex* dest, int capacity, std::string service): 
-            orig(orig), dest(dest), capacity(capacity), service(service) {}
+void Vertex::addEdge(Edge *edge) {
+    this->edges.push_back(edge);
+}
+
+void Vertex::reset() {
+    this->visited = false;
+    for(Edge *e : this->edges) e->reset();
+}
+
+Edge::Edge(Vertex* orig, Vertex* dest, int capacity, std::string service):
+            orig(orig), dest(dest), capacity(capacity), service(std::move(service)), reverse(nullptr) {}
 
 Vertex* Edge::getDest() const { 
     return dest; 
@@ -80,6 +85,21 @@ std::string Edge::getService() {
     return service;
 }
 
-void Edge::setOccupied(int occupied) {
-    this->occupied = occupied;
+void Edge::setOccupied(int occup) {
+    this->occupied = occup;
+}
+
+Edge *Edge::getReverse() const {
+    return this->reverse;
+}
+
+Edge::Edge(Vertex* orig, Vertex* dest, int capacity, std::string service, Edge *reverse):
+        orig(orig), dest(dest), capacity(capacity), service(std::move(service)), reverse(reverse) {}
+
+void Edge::setReverse(Edge *rev) {
+    this->reverse = rev;
+}
+
+void Edge::reset() {
+    this->occupied = 0;
 }

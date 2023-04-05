@@ -4,6 +4,16 @@ using namespace std;
 
 Manager::Manager() = default;
 
+std::string getField(std::istringstream &line,char delim){
+    std::string string1,string2;
+    getline(line,string1,delim);
+    if(string1.front() == '"' && string1.back() != '"'){
+        getline(line,string2,'"');
+        string1 += string2;
+        return string1.substr(1);
+    }else return string1;
+}
+
 void Manager::readFiles() {
     bool f = true;
 
@@ -18,11 +28,11 @@ void Manager::readFiles() {
         } else {
             std::istringstream station(entry);
 
-            getline(station, first, ',');
-            getline(station, second, ',');
-            getline(station, third, ',');
-            getline(station, fourth, ',');
-            getline(station, fifth, '\n');
+            first = getField(station,',');
+            second = getField(station,',');
+            third = getField(station,',');
+            fourth = getField(station,',');
+            fifth = getField(station, '\n');
             graph.addStation(first, second, third, fourth, fifth);
         }
     }
@@ -35,11 +45,10 @@ void Manager::readFiles() {
         } else {
             std::istringstream station(entry);
 
-            getline(station, first, ',');
-            getline(station, second, ',');
-            getline(station, third, ',');
-            getline(station, fourth, '\n');
-
+            first = getField(station,',');
+            second = getField(station,',');
+            third = getField(station,',');
+            fourth = getField(station, '\n');
             graph.addNetwork(first, second, stoi(third), fourth);
         }
     }

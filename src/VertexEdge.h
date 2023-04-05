@@ -22,8 +22,10 @@ class Vertex {
         void setVisited(bool visited);
         void setPath(Edge* path);
 
-        void addEdge(Vertex* dest, int capacity, const std::string& service);
+        void addEdge(Edge *edge);
         void deleteEdge(Edge* edge);
+
+        void reset();
 
     protected:
         std::string name;
@@ -40,19 +42,24 @@ class Vertex {
 class Edge {
     public:
         Edge(Vertex* orig, Vertex* dest, int capacity, std::string service);
+        Edge(Vertex* orig, Vertex* dest, int capacity, std::string service, Edge *reverse);
 
         Vertex* getDest() const;
         Vertex* getOrig() const;
         int getCapacity() const;
         int getOccupied() const;
         std::string getService();
+        Edge *getReverse() const;
 
-        void setOccupied(int occupied);
+        void setOccupied(int occup);
+        void setReverse(Edge *rev);
         void reset();
 
     protected:
         Vertex* orig;
         Vertex* dest;
+
+        Edge *reverse{};
 
         std::string service;
         int capacity;

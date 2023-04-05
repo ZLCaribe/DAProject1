@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <queue>
 
 #include "VertexEdge.h"
 
@@ -18,18 +19,23 @@ public:
     void addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service);
     std::unordered_map<std::string, Vertex *> getStationSet() const;
 
-    //Basic Service Metrics
-    double maxFlowPair(Vertex *s, Vertex *t);
-    std::vector<Vertex *> getPairsWithMaxFlow();
-    //TODO - 2.3. Municipios/Distritos com maior flow?
-    double maxStationFlow(Vertex *Vertex);
+    bool findAugmentingPath(Vertex *s, Vertex *t);
+    static int findMinResidualAlongPath(Vertex *s, Vertex *t);
+    static void testAndVisit(std::queue<Vertex *> q, Edge *e, Vertex *w, int residual);
+    static void augmentFlowAlongPath(Vertex *s, Vertex *t, int f);
 
     //Operation Cost Optmization
-    double costOptmizationMaxFlowPair(Vertex *s, Vertex *t);
+    int costOptmizationMaxFlowPair(Vertex *s, Vertex *t);
 
     //Reliability and Sensitivity to Line Failures
     Graph generateSubGraph();
     std::vector<std::pair<Vertex,int>> mostAffectedStations(const Graph& subgraph, int k);
+
+    //Basic Service Metrics
+    int maxFlowPair(Vertex *s, Vertex *t);
+    std::vector<Vertex *> getPairsWithMaxFlow();
+    //TODO - 2.3. Municipios/Distritos com maior flow?
+    int maxStationFlow(Vertex *station);
 };
 
 
