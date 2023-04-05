@@ -79,7 +79,6 @@ void Manager::mainMenu(){
         switch (i) {
             case 1:
                 this->readFiles();
-                cout << this->graph.findStation("Porto Campanhã")->getDistrict() << endl;
                 break;
             case 2:
                 this->basicMetricsMenu();

@@ -17,15 +17,19 @@ class Vertex {
 
         bool isVisited();
         Edge* getPath();
+        int getDist() const;
         std::vector<Edge*> getEdges();
 
         void setVisited(bool visited);
         void setPath(Edge* path);
+        void setDist(int d);
 
         void addEdge(Edge *edge);
         void deleteEdge(Edge* edge);
 
         void reset();
+
+        bool operator<(const Vertex *v) const;
 
     protected:
         std::string name;
@@ -36,13 +40,14 @@ class Vertex {
         bool visited = false;
 
         Edge* path = nullptr;
+        int dist = INT32_MAX;
         std::vector<Edge*> edges;
 };
 
 class Edge {
     public:
-        Edge(Vertex* orig, Vertex* dest, int capacity, std::string service);
-        Edge(Vertex* orig, Vertex* dest, int capacity, std::string service, Edge *reverse);
+        Edge(Vertex* orig, Vertex* dest, int capacity, const std::string& service);
+        Edge(Vertex* orig, Vertex* dest, int capacity, const std::string& service, Edge *reverse);
 
         Vertex* getDest() const;
         Vertex* getOrig() const;
@@ -50,6 +55,7 @@ class Edge {
         int getOccupied() const;
         std::string getService();
         Edge *getReverse() const;
+        int getWeight() const;
 
         void setOccupied(int occup);
         void setReverse(Edge *rev);
@@ -65,6 +71,7 @@ class Edge {
         int capacity;
         int occupied = 0;
         double flow = 0;
+        int weight;
 };
 
 #endif

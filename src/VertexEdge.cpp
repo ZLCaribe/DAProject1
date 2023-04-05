@@ -1,8 +1,23 @@
 #include "VertexEdge.h"
 
+#include <utility>
+
 Vertex::Vertex(std::string name, std::string district, std::string municipality,
-               std::string township, std::string line): 
-               name(name), district(district), municipality(municipality), township(township), line(line) {}
+               std::string township, std::string line):
+               name(std::move(name)), district(std::move(district)), municipality(std::move(municipality)),
+               township(std::move(township)), line(std::move(line)) {}
+
+Edge::Edge(Vertex* orig, Vertex* dest, int capacity, const std::string& service):
+        orig(orig), dest(dest), capacity(capacity), service(service), reverse(nullptr) {
+    if(service == "ALFA PENDULAR") this->weight = 4;
+    else this->weight = 2;
+}
+
+Edge::Edge(Vertex* orig, Vertex* dest, int capacity, const std::string& service, Edge *reverse):
+        orig(orig), dest(dest), capacity(capacity), service(service), reverse(reverse) {
+    if(service == "ALFA PENDULAR") this->weight = 4;
+    else this->weight = 2;
+}
 
 std::string Vertex::getName() {
     return name;
@@ -24,16 +39,16 @@ std::string Vertex::getLine() {
     return line;
 }
 
-bool Vertex::isVisited() { 
-    return visited; 
+bool Vertex::isVisited() {
+    return visited;
 }
 
-Edge* Vertex::getPath() { 
-    return path; 
+Edge* Vertex::getPath() {
+    return path;
 }
 
-std::vector<Edge*> Vertex::getEdges() { 
-    return edges; 
+std::vector<Edge*> Vertex::getEdges() {
+    return edges;
 }
 
 void Vertex::setVisited(bool visited) {
@@ -62,15 +77,24 @@ void Vertex::reset() {
     for(Edge *e : this->edges) e->reset();
 }
 
-Edge::Edge(Vertex* orig, Vertex* dest, int capacity, std::string service):
-            orig(orig), dest(dest), capacity(capacity), service(std::move(service)), reverse(nullptr) {}
-
-Vertex* Edge::getDest() const { 
-    return dest; 
+int Vertex::getDist() const {
+    return this->dist;
 }
 
-Vertex* Edge::getOrig() const { 
-    return orig; 
+void Vertex::setDist(int d) {
+    this->dist = d;
+}
+
+bool Vertex::operator<(const Vertex *v) const {
+    return this->dist > v->dist;
+}
+
+Vertex* Edge::getDest() const {
+    return dest;
+}
+
+Vertex* Edge::getOrig() const {
+    return orig;
 }
 
 int Edge::getCapacity() const {
@@ -81,7 +105,7 @@ int Edge::getOccupied() const {
     return occupied;
 }
 
-std::string Edge::getService() { 
+std::string Edge::getService() {
     return service;
 }
 
@@ -93,13 +117,14 @@ Edge *Edge::getReverse() const {
     return this->reverse;
 }
 
-Edge::Edge(Vertex* orig, Vertex* dest, int capacity, std::string service, Edge *reverse):
-        orig(orig), dest(dest), capacity(capacity), service(std::move(service)), reverse(reverse) {}
-
 void Edge::setReverse(Edge *rev) {
     this->reverse = rev;
 }
 
 void Edge::reset() {
     this->occupied = 0;
+}
+
+int Edge::getWeight() const {
+    return this->weight;
 }
