@@ -13,12 +13,6 @@ Edge::Edge(Vertex* orig, Vertex* dest, int capacity, const std::string& service)
     else this->weight = 2;
 }
 
-Edge::Edge(Vertex* orig, Vertex* dest, int capacity, const std::string& service, Edge *reverse):
-        orig(orig), dest(dest), capacity(capacity), service(service), reverse(reverse) {
-    if(service == "ALFA PENDULAR") this->weight = 4;
-    else this->weight = 2;
-}
-
 std::string Vertex::getName() {
     return name;
 }
@@ -47,8 +41,12 @@ Edge* Vertex::getPath() {
     return path;
 }
 
-std::vector<Edge*> Vertex::getEdges() {
-    return edges;
+std::vector<Edge*> Vertex::getAdj() {
+    return adj;
+}
+
+std::vector<Edge*> Vertex::getIncoming() {
+    return incoming;
 }
 
 void Vertex::setVisited(bool visited) {
@@ -60,21 +58,26 @@ void Vertex::setPath(Edge* path) {
 }
 
 void Vertex::deleteEdge(Edge* edge) {
-    for(auto i = edges.begin(); i != edges.end(); i++) {
+    for(auto i = adj.begin(); i != adj.end(); i++) {
         if(*i == edge) {
-            edges.erase(i);
+            adj.erase(i);
             break;
         }
     }
 }
 
-void Vertex::addEdge(Edge *edge) {
-    this->edges.push_back(edge);
+void Vertex::addEdgeAdj(Edge* edge) {
+    this->adj.push_back(edge);
+}
+
+void Vertex::addEdgeInc(Edge* edge) {
+    this->incoming.push_back(edge);
 }
 
 void Vertex::reset() {
     this->visited = false;
-    for(Edge *e : this->edges) e->reset();
+    for(Edge *e : this->adj) e->reset();
+    for(Edge *e : this->incoming) e->reset();
 }
 
 int Vertex::getDist() const {

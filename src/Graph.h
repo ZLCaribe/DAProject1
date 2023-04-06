@@ -21,7 +21,7 @@ public:
 
     bool findAugmentingPath(Vertex *s, Vertex *t);
     static int findMinResidualAlongPath(Vertex *s, Vertex *t);
-    static void testAndVisit(std::priority_queue<Vertex *>& q, Edge *e, Vertex *w, int residual);
+    static void testAndVisit(std::queue<Vertex *>& q, Edge *e, Vertex *w, int residual);
     static void augmentFlowAlongPath(Vertex *s, Vertex *t, int f);
 
     //Operation Cost Optmization

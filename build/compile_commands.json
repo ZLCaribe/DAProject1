@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/zeta/cpp/DAProject1/build",
+  "command": "/usr/bin/c++   -g -std=gnu++23 -o CMakeFiles/Project1.dir/main.cpp.o -c /home/zeta/cpp/DAProject1/main.cpp",
+  "file": "/home/zeta/cpp/DAProject1/main.cpp",
+  "output": "CMakeFiles/Project1.dir/main.cpp.o"
+},
+{
+  "directory": "/home/zeta/cpp/DAProject1/build",
+  "command": "/usr/bin/c++   -g -std=gnu++23 -o CMakeFiles/Project1.dir/src/Manager.cpp.o -c /home/zeta/cpp/DAProject1/src/Manager.cpp",
+  "file": "/home/zeta/cpp/DAProject1/src/Manager.cpp",
+  "output": "CMakeFiles/Project1.dir/src/Manager.cpp.o"
+},
+{
+  "directory": "/home/zeta/cpp/DAProject1/build",
+  "command": "/usr/bin/c++   -g -std=gnu++23 -o CMakeFiles/Project1.dir/src/Graph.cpp.o -c /home/zeta/cpp/DAProject1/src/Graph.cpp",
+  "file": "/home/zeta/cpp/DAProject1/src/Graph.cpp",
+  "output": "CMakeFiles/Project1.dir/src/Graph.cpp.o"
+},
+{
+  "directory": "/home/zeta/cpp/DAProject1/build",
+  "command": "/usr/bin/c++   -g -std=gnu++23 -o CMakeFiles/Project1.dir/src/VertexEdge.cpp.o -c /home/zeta/cpp/DAProject1/src/VertexEdge.cpp",
+  "file": "/home/zeta/cpp/DAProject1/src/VertexEdge.cpp",
+  "output": "CMakeFiles/Project1.dir/src/VertexEdge.cpp.o"
+}
+]

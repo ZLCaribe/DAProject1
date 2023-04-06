@@ -18,13 +18,15 @@ class Vertex {
         bool isVisited();
         Edge* getPath();
         int getDist() const;
-        std::vector<Edge*> getEdges();
+        std::vector<Edge*> getAdj();
+        std::vector<Edge*> getIncoming();
 
         void setVisited(bool visited);
         void setPath(Edge* path);
         void setDist(int d);
 
-        void addEdge(Edge *edge);
+        void addEdgeAdj(Edge *edge);
+        void addEdgeInc(Edge *edge);
         void deleteEdge(Edge* edge);
 
         void reset();
@@ -40,14 +42,15 @@ class Vertex {
         bool visited = false;
 
         Edge* path = nullptr;
-        int dist = INT32_MAX;
-        std::vector<Edge*> edges;
+        int dist = 0;
+
+        std::vector<Edge*> adj;
+        std::vector<Edge*> incoming;
 };
 
 class Edge {
     public:
         Edge(Vertex* orig, Vertex* dest, int capacity, const std::string& service);
-        Edge(Vertex* orig, Vertex* dest, int capacity, const std::string& service, Edge *reverse);
 
         Vertex* getDest() const;
         Vertex* getOrig() const;
@@ -69,8 +72,7 @@ class Edge {
 
         std::string service;
         int capacity;
-        int occupied = 0;
-        double flow = 0;
+        int occupied;
         int weight;
 };
 

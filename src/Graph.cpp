@@ -25,17 +25,16 @@ void Graph::addStation(const std::string& name, const std::string& district, con
 
 void Graph::addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service) {
     if(this->findStation(orig) != nullptr && this->findStation(dest) != nullptr) {
-        for(auto &a : this->stationsSet[orig]->getEdges()){
+        for(auto &a : this->stationsSet[orig]->getAdj()){
             if(a->getDest()->getName() == dest && a->getService() == service){
                 //std::cout << "duplicate edge found: " << orig << " - " << dest << std::endl;
                 return;
             }
         }
-        Edge *edge1 = new Edge(this->stationsSet[orig],this->stationsSet[dest],capacity / 2, service);
-        Edge *edge2 = new Edge(this->stationsSet[dest],this->stationsSet[orig],capacity / 2, service, edge1);
-        edge1->setReverse(edge2);
-        this->stationsSet[orig]->addEdge(edge1);
-        this->stationsSet[dest]->addEdge(edge2);
+        Edge *edge = new Edge(this->stationsSet[orig],this->stationsSet[dest], capacity / 2, service);
+
+        this->stationsSet[orig]->addEdgeAdj(edge);
+        this->stationsSet[dest]->addEdgeInc(edge);
     }
 }
 
@@ -58,12 +57,17 @@ int Graph::maxFlowPair(Vertex *s, Vertex *t) {
         Vertex *v = it.second;
         v->reset();
     }
-    // repeat until there is no more augmenting path from s to t
-    while (findAugmentingPath(s, t)){
+    //repeat until there is no more augmenting path from s to t
+    while (findAugmentingPath(s, t)){ //the problem is in this cycle
         int f = findMinResidualAlongPath(s,t);
+        //std::cout << f << std::endl;
         augmentFlowAlongPath(s,t,f);
-        maxFlow += f;
     }
+    //compute flow
+    for(auto e : t->getIncoming()) {
+        maxFlow += e->getOccupied();
+    }
+
     return maxFlow;
 }
 
@@ -154,31 +158,30 @@ std::vector<std::pair<Vertex, int>> Graph::mostAffectedStations(const Graph& sub
 }
 
 bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
-    for(const auto& it : this->stationsSet) it.second->setVisited(false);
+    for(const auto& it : this->stationsSet) {
+        it.second->setVisited(false);
+    }
     //BFS
     s->setVisited(true);
-    s->setDist(0);
-    std::priority_queue<Vertex *> q;
+    std::queue<Vertex *> q;
     q.push(s);
     while(!q.empty() && !t->isVisited()){
-        Vertex *v = q.top();q.pop();
-        v->setVisited(true);
-        for(auto e : v->getEdges()){
-            auto neighbor = e->getDest();
-            if(neighbor->isVisited()) continue;
-            if(v->getDist() + e->getWeight() < neighbor->getDist()) {
-                neighbor->setDist(v->getDist() + e->getWeight());
-                neighbor->setPath(e);
-                q.push(neighbor);
-            }
+        Vertex *v = q.front();
+        q.pop();
+        for(auto e : v->getAdj()){
+            testAndVisit(q, e, e->getDest(), e->getWeight() - e->getOccupied());
+        }
+        for(auto e: v->getIncoming()) {
+            testAndVisit(q, e, e->getOrig(), e->getOccupied());
         }
     }
     return t->isVisited();
 }
 
-void Graph::testAndVisit(std::priority_queue<Vertex *>& q, Edge *e, Vertex *w, int residual) {
-    if(!w->isVisited() && residual > 0){
-        w->setDist(std::min(w->getDist(),e->getOrig()->getDist() + e->getWeight()));
+void Graph::testAndVisit(std::queue<Vertex *>& q, Edge *e, Vertex *w, int residual) {
+    //std::cout << residual << std::endl;
+    if(!w->isVisited() && residual > 0){   
+        w->setVisited(true);
         w->setPath(e);
         q.push(w);
     }
