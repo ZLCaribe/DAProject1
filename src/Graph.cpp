@@ -31,8 +31,8 @@ void Graph::addNetwork(const std::string& orig, const std::string& dest, int cap
                 return;
             }
         }
-        Edge *edge1 = new Edge(this->stationsSet[orig],this->stationsSet[dest],capacity / 2, service);
-        Edge *edge2 = new Edge(this->stationsSet[dest],this->stationsSet[orig],capacity / 2, service, edge1);
+        Edge *edge1 = new Edge(this->stationsSet[orig],this->stationsSet[dest],capacity , service);
+        Edge *edge2 = new Edge(this->stationsSet[dest],this->stationsSet[orig],capacity , service, edge1);
         edge1->setReverse(edge2);
         this->stationsSet[orig]->addEdge(edge1);
         this->stationsSet[dest]->addEdge(edge2);
@@ -78,12 +78,12 @@ std::vector<Vertex *> Graph::getPairsWithMaxFlow() {
     int f = 0;
     for(auto it1 = this->stationsSet.begin(); it1 != this->stationsSet.end(); it1++){
         if(it1 != this->stationsSet.end()) {
-            auto it3 = it1;
-            it3++;
-            for (auto it2 = it3; it2 != this->stationsSet.end(); it2++) {
+            auto it2 = it1;
+            it2++;
+            for (; it2 != this->stationsSet.end(); it2++) {
                 int n = maxFlowPair(it1->second, it2->second);
                 if (n > f) {
-                    r = {};
+                    r.erase(r.begin(),r.end());
                     r.push_back(it1->second);
                     r.push_back(it2->second);
                 } else if (n == f) {
@@ -154,31 +154,27 @@ std::vector<std::pair<Vertex, int>> Graph::mostAffectedStations(const Graph& sub
 }
 
 bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
-    for(const auto& it : this->stationsSet) it.second->setVisited(false);
+    for(auto v : this->stationsSet) v.second->setVisited(false);
     //BFS
     s->setVisited(true);
-    s->setDist(0);
-    std::priority_queue<Vertex *> q;
+    std::queue<Vertex *> q;
     q.push(s);
     while(!q.empty() && !t->isVisited()){
-        Vertex *v = q.top();q.pop();
-        v->setVisited(true);
+        Vertex *v = q.front();
+        q.pop();
         for(auto e : v->getEdges()){
-            auto neighbor = e->getDest();
-            if(neighbor->isVisited()) continue;
-            if(v->getDist() + e->getWeight() < neighbor->getDist()) {
-                neighbor->setDist(v->getDist() + e->getWeight());
-                neighbor->setPath(e);
-                q.push(neighbor);
-            }
+            testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getOccupied());
+        }
+        for(auto e : v->getEdges()){
+            testAndVisit(q, e->getReverse(), e->getOrig(), e->getOccupied());
         }
     }
     return t->isVisited();
 }
 
-void Graph::testAndVisit(std::priority_queue<Vertex *>& q, Edge *e, Vertex *w, int residual) {
+void Graph::testAndVisit(std::queue<Vertex *>& q, Edge *e, Vertex *w, int residual) {
     if(!w->isVisited() && residual > 0){
-        w->setDist(std::min(w->getDist(),e->getOrig()->getDist() + e->getWeight()));
+        w->setVisited(true);
         w->setPath(e);
         q.push(w);
     }

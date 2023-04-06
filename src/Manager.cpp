@@ -114,6 +114,7 @@ void Manager::basicMetricsMenu() {
         cin >> i;
         switch (i) {
             case 1:
+                /*
                 if((orig = inputStation("Insira a estacao de origem")) == nullptr){
                     cout << "Operacao cancelada" << endl;
                     continue;
@@ -121,8 +122,9 @@ void Manager::basicMetricsMenu() {
                 if((dest = inputStation("Insira a estacao de destino")) == nullptr){
                     cout << "Operacao cancelada" << endl;
                     continue;
-                }
-
+                }*/
+                orig = this->graph.findStation("Porto Campanhã");
+                dest = this->graph.findStation("Entroncamento");
                 cout << "O fluxo maximo partindo de " << orig->getName() << " com destino a " << dest->getName()
                 << " e: " << this->graph.maxFlowPair(orig,dest) << endl << endl;
                 break;
@@ -130,7 +132,7 @@ void Manager::basicMetricsMenu() {
                 r = this->graph.getPairsWithMaxFlow();
                 cout << "Os trajetos com maior fluxo sao: " << endl;
                 for(int k = 0; k < r.size(); k+=2){
-                    cout << r.at(k)->getName() << "->" << r.at(k+1) << endl;
+                    cout << r.at(k)->getName() << "->" << r.at(k+1)->getName() << endl;
                 }
                 cout << endl;
                 break;
@@ -138,7 +140,7 @@ void Manager::basicMetricsMenu() {
                 //TODO
                 break;
             case 4:
-                if((m = inputStation("Insira a estacao que deseja saber o fluxo maximo de entrada: ")) != nullptr){
+                if((m = inputStation("Insira a estacao que deseja saber o fluxo maximo de entrada: ")) == nullptr){
                     cout << "Operação cancelada" << endl;
                     continue;
                 }
@@ -157,11 +159,11 @@ void Manager::basicMetricsMenu() {
 
 void Manager::costOptmization() {
     Vertex *s = nullptr, *t = nullptr;
-    if((s = inputStation("Insira a estacao de origem")) != 0){
+    if((s = inputStation("Insira a estacao de origem")) == nullptr){
         cout << "Operação cancelada" << endl;
         return;
     }
-    if((t = inputStation("Insira a estacao de destino")) != 0){
+    if((t = inputStation("Insira a estacao de destino")) == nullptr){
         cout << "Operação cancelada" << endl;
         return;
     }
