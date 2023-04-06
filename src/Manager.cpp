@@ -99,7 +99,8 @@ void Manager::mainMenu(){
 }
 
 void Manager::basicMetricsMenu() {
-    std::vector<Vertex *> r;
+    std::pair<int, std::vector<Vertex *>> p;
+    vector<Vertex *> r;
     Vertex *m = nullptr, *orig = nullptr, *dest = nullptr;
     int i = 0;
     while(i != 5){
@@ -129,8 +130,9 @@ void Manager::basicMetricsMenu() {
                 << " e: " << this->graph.maxFlowPair(orig,dest) << endl << endl;
                 break;
             case 2:
-                r = this->graph.getPairsWithMaxFlow();
-                cout << "Os trajetos com maior fluxo sao: " << endl;
+                p = this->graph.getPairsWithMaxFlow();
+                r = p.second;
+                cout << "Os trajetos com maior fluxo( " << p.first << " )sao: " << endl;
                 for(int k = 0; k < r.size(); k+=2){
                     cout << r.at(k)->getName() << "->" << r.at(k+1)->getName() << endl;
                 }

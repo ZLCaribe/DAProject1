@@ -31,8 +31,8 @@ void Graph::addNetwork(const std::string& orig, const std::string& dest, int cap
                 return;
             }
         }
-        Edge *edge1 = new Edge(this->stationsSet[orig],this->stationsSet[dest],capacity , service);
-        Edge *edge2 = new Edge(this->stationsSet[dest],this->stationsSet[orig],capacity , service, edge1);
+        Edge *edge1 = new Edge(this->stationsSet[orig],this->stationsSet[dest],capacity, service);
+        Edge *edge2 = new Edge(this->stationsSet[dest],this->stationsSet[orig],capacity, service, edge1);
         edge1->setReverse(edge2);
         this->stationsSet[orig]->addEdge(edge1);
         this->stationsSet[dest]->addEdge(edge2);
@@ -73,7 +73,7 @@ int Graph::maxFlowPair(Vertex *s, Vertex *t) {
  * @return Stations with biggest flow capacity being the odd indexes stations the
  * source and the even indexes the target
  */
-std::vector<Vertex *> Graph::getPairsWithMaxFlow() {
+std::pair<int,std::vector<Vertex *>> Graph::getPairsWithMaxFlow() {
     std::vector<Vertex *> r;
     int f = 0;
     for(auto it1 = this->stationsSet.begin(); it1 != this->stationsSet.end(); it1++){
@@ -86,6 +86,7 @@ std::vector<Vertex *> Graph::getPairsWithMaxFlow() {
                     r.erase(r.begin(),r.end());
                     r.push_back(it1->second);
                     r.push_back(it2->second);
+                    f = n;
                 } else if (n == f) {
                     r.push_back(it1->second);
                     r.push_back(it2->second);
@@ -93,7 +94,7 @@ std::vector<Vertex *> Graph::getPairsWithMaxFlow() {
             }
         }
     }
-    return r;
+    return {f,r};
 }
 
 /**
