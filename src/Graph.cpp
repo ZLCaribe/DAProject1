@@ -4,6 +4,8 @@
 #include <iostream>
 #include <queue>
 
+#define INF std::numeric_limits<int>::max()
+
 Graph::Graph() = default;
 
 Vertex *Graph::findStation(const std::string& name) {
@@ -31,8 +33,8 @@ void Graph::addNetwork(const std::string& orig, const std::string& dest, int cap
                 return;
             }
         }
-        Edge *edge1 = new Edge(this->stationsSet[orig],this->stationsSet[dest],capacity, service);
-        Edge *edge2 = new Edge(this->stationsSet[dest],this->stationsSet[orig],capacity, service, edge1);
+        Edge *edge1 = new Edge(this->stationsSet[orig],this->stationsSet[dest],capacity / 2, service);
+        Edge *edge2 = new Edge(this->stationsSet[dest],this->stationsSet[orig],capacity / 2, service, edge1);
         edge1->setReverse(edge2);
         this->stationsSet[orig]->addEdge(edge1);
         this->stationsSet[dest]->addEdge(edge2);
@@ -104,10 +106,14 @@ std::pair<int,std::vector<Vertex *>> Graph::getPairsWithMaxFlow() {
  * @return maximum number of trains
  */
 int Graph::maxStationFlow(Vertex *station) {
-    //TODO
     //Adicionar nós temporários com arestas de capacidade infinita para os nós que só tem uma aresta
     //depois usar maxFlowPair para calcular resultado (to be discussed)
-    return 0;
+    this->addStation("Infinite sink","nowhere", "anywhere", "I don't know", "none");
+    for(auto v : this->stationsSet) if(v.second->getEdges().size() == 1) {
+        this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDAR");
+        //std::cout << v.first << std::endl;
+    }
+    return this->maxFlowPair(this->stationsSet["Infinite sink"],station);
 }
 
 /**

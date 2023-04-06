@@ -146,7 +146,7 @@ void Manager::basicMetricsMenu() {
                     cout << "Operação cancelada" << endl;
                     continue;
                 }
-                cout << "O fluxo maximo para essa estação tendo em conta toda a rede de trens e: "
+                cout << "O fluxo maximo para essa estacao tendo em conta toda a rede de trens e: "
                 << this->graph.maxStationFlow(m) << endl << endl;
                 break;
             case 5:
