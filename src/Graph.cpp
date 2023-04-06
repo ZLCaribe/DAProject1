@@ -113,7 +113,12 @@ int Graph::maxStationFlow(Vertex *station) {
         this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDAR");
         //std::cout << v.first << std::endl;
     }
-    return this->maxFlowPair(this->stationsSet["Infinite sink"],station);
+    int r = this->maxFlowPair(this->stationsSet["Infinite sink"],station);
+    for(auto e : this->stationsSet["Infinite sink"]->getEdges()){
+        removeNetwork(e->getDest(),e->getReverse());
+    }
+    this->removeStation(this->stationsSet["Infinite sink"]);
+    return r;
 }
 
 /**
@@ -215,4 +220,12 @@ void Graph::augmentFlowAlongPath(Vertex *s, Vertex *t, int f) {
             v = e->getDest();
         }
     }
+}
+
+void Graph::removeStation(Vertex *v) {
+    this->stationsSet.erase(v->getName());
+}
+
+void Graph::removeNetwork(Vertex *v, Edge *e) {
+    v->deleteEdge(e);
 }

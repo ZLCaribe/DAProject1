@@ -47,7 +47,7 @@ Edge* Vertex::getPath() {
     return path;
 }
 
-std::vector<Edge*> Vertex::getEdges() {
+std::vector<Edge*> &Vertex::getEdges() {
     return edges;
 }
 

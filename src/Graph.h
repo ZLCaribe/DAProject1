@@ -16,7 +16,9 @@ public:
     Vertex *findStation(const std::string& name);
     void addStation(const std::string& name, const std::string& district, const std::string& municipality,
                     const std::string& township, const std::string& line);
+    void removeStation(Vertex *v);
     void addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service);
+    static void removeNetwork(Vertex * v, Edge *e);
     std::unordered_map<std::string, Vertex *> getStationSet() const;
 
     bool findAugmentingPath(Vertex *s, Vertex *t);

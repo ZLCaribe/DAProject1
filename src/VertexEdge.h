@@ -18,7 +18,7 @@ class Vertex {
         bool isVisited();
         Edge* getPath();
         int getDist() const;
-        std::vector<Edge*> getEdges();
+        std::vector<Edge*> &getEdges();
 
         void setVisited(bool visited);
         void setPath(Edge* path);
