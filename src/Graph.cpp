@@ -146,7 +146,7 @@ Graph Graph::generateSubGraph() {
 		std::cin >> userinput;
 		Vertex* station = this->findStation(userinput);
 		for(auto a: station->getEdges()){
-			std::cout << a->;
+			std::cout << a->getService();
 		}
 	}
     return {};
