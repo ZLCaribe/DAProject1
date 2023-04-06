@@ -169,8 +169,9 @@ void Manager::costOptmization() {
         cout << "Operação cancelada" << endl;
         return;
     }
-    double cost = this->graph.costOptmizationMaxFlowPair(s,t);
-    cout << "O custo minimo para fazer esse percurso e: " << cost << endl;
+    std::pair<int,int> result = this->graph.costOptmizationMaxFlowPair(s,t);
+    cout << "O custo minimo para fazer esse percurso e: " << result.first << endl;
+    cout << "O fluxo maximo para fazer esse percurso e: " << result.second << endl;
 }
 
 void Manager::testLineFailures() {
