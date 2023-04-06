@@ -18,7 +18,7 @@ public:
                     const std::string& township, const std::string& line);
     void removeStation(Vertex *v);
     void addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service);
-    static void removeNetwork(Vertex * v, Edge *e);
+    static void removeNetwork(Vertex * v, Vertex *t);
     std::unordered_map<std::string, Vertex *> getStationSet() const;
 
     bool findAugmentingPath(Vertex *s, Vertex *t);
@@ -30,7 +30,7 @@ public:
     int costOptmizationMaxFlowPair(Vertex *s, Vertex *t);
 
     //Reliability and Sensitivity to Line Failures
-    Graph generateSubGraph();
+    Graph generateSubGraph(std::vector<Vertex*> toRemove);
     std::vector<std::pair<Vertex,int>> mostAffectedStations(const Graph& subgraph, int k);
 
     //Basic Service Metrics

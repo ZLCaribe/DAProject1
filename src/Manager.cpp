@@ -87,7 +87,7 @@ void Manager::mainMenu(){
                 this->costOptmization();
                 break;
             case 4:
-                this->testLineFailures();
+                this->lineFailuresMenu();
                 break;
             case 5:
                 cout << "A sair..." << endl;
@@ -115,7 +115,6 @@ void Manager::basicMetricsMenu() {
         cin >> i;
         switch (i) {
             case 1:
-                /*
                 if((orig = inputStation("Insira a estacao de origem")) == nullptr){
                     cout << "Operacao cancelada" << endl;
                     continue;
@@ -123,9 +122,8 @@ void Manager::basicMetricsMenu() {
                 if((dest = inputStation("Insira a estacao de destino")) == nullptr){
                     cout << "Operacao cancelada" << endl;
                     continue;
-                }*/
-                orig = this->graph.findStation("Porto Campanhã");
-                dest = this->graph.findStation("Entroncamento");
+                }
+
                 cout << "O fluxo maximo partindo de " << orig->getName() << " com destino a " << dest->getName()
                 << " e: " << this->graph.maxFlowPair(orig,dest) << endl << endl;
                 break;
@@ -173,18 +171,72 @@ void Manager::costOptmization() {
     cout << "O custo minimo para fazer esse percurso e: " << cost << endl;
 }
 
-void Manager::testLineFailures() {
-    Graph subgraph = this->graph.generateSubGraph();
+void Manager::lineFailuresMenu() {
+    bool done = false;
+    Vertex *s = nullptr, *t = nullptr;
+    vector<Vertex*> toRemove;
+
+    while (!done) {
+        if((s = inputStation("Insira a estacao de origem da edge a remover")) == nullptr) {
+            cout << "Operação cancelada" << endl;
+            done = true;
+            continue;
+        }
+        if((t = inputStation("Insira a estacao de destino da edge a remover")) == nullptr) {
+            cout << "Operação cancelada" << endl;
+            done = true;
+            continue;
+        }
+
+        toRemove.push_back(s);
+        toRemove.push_back(t);
+    }
+
+    Graph subgraph = this->graph.generateSubGraph(toRemove);
+    int i = 0;
+
+    while(i != 3){
+        cout << "-----------MENU FALHAS NA LINHA----------" << endl;
+        cout << "Selecione a opcao: \n";
+        cout << "1: Calcular fluxo maximo entre duas estacoes \n";
+        cout << "2: Estações mais afetadas \n";
+        cout << "3: Sair \n";
+        cout << "opcao: ";
+        cin >> i;
+    
+        switch(i) {
+            case 1:
+                if((s = inputStation("Insira a estacao de origem")) == nullptr){
+                    cout << "Operacao cancelada" << endl;
+                    continue;
+                }
+                if((t = inputStation("Insira a estacao de destino")) == nullptr){
+                    cout << "Operacao cancelada" << endl;
+                    continue;
+                }
+
+                cout << "O fluxo maximo partindo de " << s->getName() << " com destino a " << t->getName()
+                << " e: " << subgraph.maxFlowPair(s,t) << endl << endl;
+                break;
+            case 2:
+                break;
+            default:
+                cout << "Selecione uma opcao valida!" << endl;
+                break;
+        }
+    }
+
+    /*
     int k;
     cout << "Insira o top-k estacoes afetadas que pretende ver: ";
     cin >> k;
     auto report = this->graph.mostAffectedStations(subgraph,k);
-    int i = 1;
-    cout << "Top" << k << "estacoes mais afetadas pelas falhas:" << endl;
+    int j = 1;
+    cout << "Top " << k << " estacoes mais afetadas pelas falhas:" << endl;
     for(auto x : report){
-        cout << "Top " << i++ << ":" << x.first.getName() << endl;
+        cout << "Top " << j++ << ":" << x.first.getName() << endl;
         cout << "Reducao no fluxo" << x.second << endl << endl;
-    }
+    }*/
 }
 
 Vertex *Manager::inputStation(const string& message) {
