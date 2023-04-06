@@ -66,6 +66,13 @@ void Vertex::deleteEdge(Edge* edge) {
             break;
         }
     }
+    Vertex* vertex1 = edge->getDest();
+    for(auto j = vertex1->getEdges().begin(); j != vertex1->getEdges().end(); j++) {
+        if(*j == edge->getReverse()) {
+            vertex1->getEdges().erase(j);
+            break;
+        }
+    }
 }
 
 void Vertex::addEdge(Edge *edge) {
