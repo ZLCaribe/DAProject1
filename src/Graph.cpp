@@ -109,8 +109,8 @@ int Graph::maxStationFlow(Vertex *station) {
     //Adicionar nós temporários com arestas de capacidade infinita para os nós que só tem uma aresta
     //depois usar maxFlowPair para calcular resultado (to be discussed)
     this->addStation("Infinite sink","nowhere", "anywhere", "I don't know", "none");
-    for(auto v : this->stationsSet) if(v.second->getEdges().size() == 1) {
-        this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDAR");
+    for(auto v : this->stationsSet) if(v.second->getEdges().size() == 1 && v.second != station) {
+        this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDARD");
         //std::cout << v.first << std::endl;
     }
     return this->maxFlowPair(this->stationsSet["Infinite sink"],station);
@@ -134,8 +134,16 @@ int Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
  * @return subgraph
  */
 Graph Graph::generateSubGraph() {
-    //TODO
-    //Precisamos decidir o que vamos mudar no grafo original
+    std::string userinput;
+	std::vector<Edge *> toBeRemoved;
+	while(userinput != "sair"){
+		std::cout << "Escolha a estaçao:";
+		std::cin >> userinput;
+		Vertex* station = this->findStation(userinput);
+		for(auto a: station->getEdges()){
+			std::cout << a->;
+		}
+	}
     return {};
 }
 
