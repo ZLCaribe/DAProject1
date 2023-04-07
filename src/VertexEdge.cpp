@@ -59,17 +59,10 @@ void Vertex::setPath(Edge* path) {
     this->path = path;
 }
 
-void Vertex::deleteEdge(Edge* edge) {
+void Vertex::deleteEdge(Vertex *v) {
     for(auto i = edges.begin(); i != edges.end(); i++) {
-        if(*i == edge) {
+        if((*i)->getDest() == v) {
             edges.erase(i);
-            break;
-        }
-    }
-    Vertex* vertex1 = edge->getDest();
-    for(auto j = vertex1->getEdges().begin(); j != vertex1->getEdges().end(); j++) {
-        if(*j == edge->getReverse()) {
-            vertex1->getEdges().erase(j);
             break;
         }
     }

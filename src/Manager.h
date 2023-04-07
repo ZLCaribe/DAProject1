@@ -19,7 +19,7 @@ public:
     void basicMetricsMenu();
 
     void costOptmization();
-    void testLineFailures();
+    void lineFailuresMenu();
 
     Vertex *inputStation(const std::string& message);
 };

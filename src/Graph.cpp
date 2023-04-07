@@ -14,8 +14,6 @@ Vertex *Graph::findStation(const std::string& name) {
     return nullptr;
 }
 
-//int cnt = 0;
-
 void Graph::addStation(const std::string& name, const std::string& district, const std::string& municipality,
                        const std::string& township, const std::string& line) {
     if(this->findStation(name) == nullptr) {
@@ -113,8 +111,8 @@ int Graph::maxStationFlow(Vertex *station) {
         this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDARD");
     }
     int r = this->maxFlowPair(this->stationsSet["Infinite sink"],station);
-    auto i = this->stationsSet["Infinite sink"];
-    while (!i->getEdges().empty()) i->deleteEdge(i->getEdges().begin().operator*());
+    auto i  = this->stationsSet["Infinite sink"]->getEdges();
+    while(!i.empty()) removeNetwork(i.begin().operator*()->getDest(),i.begin().operator*()->getOrig());
     this->removeStation(this->stationsSet["Infinite sink"]);
     return r;
 }
@@ -136,18 +134,12 @@ int Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
  * Creates a new graph that is a subgraph of the original one
  * @return subgraph
  */
-Graph Graph::generateSubGraph() {
-    std::string userinput;
-	std::vector<Edge *> toBeRemoved;
-	while(userinput != "sair"){
-		std::cout << "Escolha a estaçao:";
-		std::cin >> userinput;
-		Vertex* station = this->findStation(userinput);
-		for(auto a: station->getEdges()){
-			std::cout << a->getService();
-		}
-	}
-    return {};
+Graph Graph::generateSubGraph(std::vector<Vertex*> toRemove) {
+    Graph subGraph = *this;
+    for(auto i = toRemove.begin(); i != toRemove.end(); i += 2) {
+        subGraph.removeNetwork(*i, *i + 1);
+    }
+    return subGraph;
 }
 
 /**
@@ -232,6 +224,7 @@ void Graph::removeStation(Vertex *v) {
     this->stationsSet.erase(v->getName());
 }
 
-void Graph::removeNetwork(Vertex *v, Edge *e) {
-    v->deleteEdge(e);
+void Graph::removeNetwork(Vertex *s, Vertex *t) {
+    s->deleteEdge(t);
+    t->deleteEdge(s);
 }

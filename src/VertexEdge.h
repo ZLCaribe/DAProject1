@@ -25,7 +25,7 @@ class Vertex {
         void setDist(int d);
 
         void addEdge(Edge *edge);
-        void deleteEdge(Edge* edge);
+        void deleteEdge(Vertex *v);
 
         void reset();
 
