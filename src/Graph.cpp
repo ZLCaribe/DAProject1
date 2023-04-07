@@ -3,6 +3,7 @@
 #include <utility>
 #include <iostream>
 #include <queue>
+#include <unordered_map>
 
 #define INF std::numeric_limits<int>::max()
 
@@ -124,10 +125,44 @@ int Graph::maxStationFlow(Vertex *station) {
  * @param t target station
  * @return Minimum cost of the route
  */
-int Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
-    //TODO
-    //Ainda não sei o algoritmo que vou usar para calcular o caminho e flow com custo mínimo
-    return 0;
+std::pair<int,int> Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
+    std::unordered_map<Vertex* ,std::pair<int, std::vector<Edge*>>> travelPaths;
+
+	for(auto a : this->stationsSet){
+		a.second->setVisited(false);
+	}
+
+	std::queue<Vertex*> q;
+	q.push(s);
+	s->setVisited(true);
+
+	if(s==t) return {};
+
+	while(!q.empty()){
+		for(auto e : q.front()->getEdges()){
+			Vertex* target = e->getDest();
+			if(!target->isVisited() || travelPaths[q.front()].first + e->getWeight() < travelPaths[target].first){
+				travelPaths[target] = {travelPaths[q.front()].first + e->getWeight(), travelPaths[q.front()].second};
+				travelPaths[target].second.push_back(e);
+				q.push(target);
+				target->setVisited(true);
+			}
+		}
+		q.pop();
+	}
+
+	std::vector<Edge*> path;
+	//path.push_back(s);
+	for(auto a : travelPaths[t].second){
+		path.push_back(a);
+	}
+
+	int min=INT32_MAX;
+	for(auto b : path){
+		std::cout << b->getOrig()->getName() << " - " << b->getDest()->getName() << std::endl;
+		if(b->getCapacity()<min) min = b->getCapacity();
+	}
+    return {travelPaths[t].first * min,min};
 }
 
 /**

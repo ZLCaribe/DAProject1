@@ -27,7 +27,7 @@ public:
     static void augmentFlowAlongPath(Vertex *s, Vertex *t, int f);
 
     //Operation Cost Optmization
-    int costOptmizationMaxFlowPair(Vertex *s, Vertex *t);
+    std::pair<int,int> costOptmizationMaxFlowPair(Vertex *s, Vertex *t);
 
     //Reliability and Sensitivity to Line Failures
     Graph generateSubGraph(std::vector<Vertex*> toRemove);
