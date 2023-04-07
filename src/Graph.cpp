@@ -112,8 +112,8 @@ int Graph::maxStationFlow(Vertex *station) {
         this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDARD");
     }
     int r = this->maxFlowPair(this->stationsSet["Infinite sink"],station);
-    auto i  = this->stationsSet["Infinite sink"]->getEdges();
-    while(!i.empty()) removeNetwork(i.begin().operator*()->getDest(),i.begin().operator*()->getOrig());
+    auto i  = this->stationsSet["Infinite sink"];
+    while(!i->getEdges().empty()) removeNetwork(i,i->getEdges().begin().operator*()->getDest());
     this->removeStation(this->stationsSet["Infinite sink"]);
     return r;
 }
