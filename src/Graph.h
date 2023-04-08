@@ -22,6 +22,7 @@ public:
     std::unordered_map<std::string, Vertex *> getStationSet() const;
 
     bool findAugmentingPath(Vertex *s, Vertex *t);
+    bool subFindAugmentingPath(Vertex *s, Vertex *t);
     static int findMinResidualAlongPath(Vertex *s, Vertex *t);
     static void testAndVisit(std::queue<Vertex *>& q, Edge *e, Vertex *w, int residual);
     static void augmentFlowAlongPath(Vertex *s, Vertex *t, int f);
@@ -35,6 +36,7 @@ public:
 
     //Basic Service Metrics
     int maxFlowPair(Vertex *s, Vertex *t);
+    int subMaxFlowPair(Vertex *s, Vertex *t);
     std::pair<int, std::vector<Vertex *>> getPairsWithMaxFlow();
     std::vector<std::pair<std::string, int>> getBudgetPriorities(bool MorD, int k);
     int maxStationFlow(Vertex *station);

@@ -23,6 +23,7 @@ class Vertex {
         void setVisited(bool visited);
         void setPath(Edge* path);
         void setDist(int d);
+        void disconnectEdge(Vertex* t);
 
         void addEdge(Edge *edge);
         void deleteEdge(Vertex *v);
@@ -56,7 +57,9 @@ class Edge {
         std::string getService();
         Edge *getReverse() const;
         int getWeight() const;
+        bool getSwitch();
 
+        void switchEdge();
         void setOccupied(int occup);
         void setReverse(Edge *rev);
         void reset();
@@ -72,6 +75,8 @@ class Edge {
         int occupied = 0;
         double flow = 0;
         int weight;
+
+        bool subgraph = true;
 };
 
 #endif

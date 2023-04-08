@@ -193,25 +193,25 @@ void Manager::costOptmization() {
 void Manager::lineFailuresMenu() {
     bool done = false;
     Vertex *s = nullptr, *t = nullptr;
-    vector<Vertex*> toRemove;
+    vector<Vertex*> edges;
 
-    while (!done) {
+     while (!done) {
         if((s = inputStation("Insira a estacao de origem da edge a remover")) == nullptr) {
-            cout << "Operação cancelada" << endl;
+            cout << "Operação concluida" << endl;
             done = true;
             continue;
         }
         if((t = inputStation("Insira a estacao de destino da edge a remover")) == nullptr) {
-            cout << "Operação cancelada" << endl;
+            cout << "Operação concluida" << endl;
             done = true;
             continue;
         }
 
-        toRemove.push_back(s);
-        toRemove.push_back(t);
+        edges.push_back(s);
+        edges.push_back(t);
     }
 
-    Graph subgraph = this->graph.generateSubGraph(toRemove);
+    graph.generateSubGraph(edges);
     int i = 0;
 
     while(i != 3){
@@ -235,7 +235,7 @@ void Manager::lineFailuresMenu() {
                 }
 
                 cout << "O fluxo maximo partindo de " << s->getName() << " com destino a " << t->getName()
-                << " e: " << subgraph.maxFlowPair(s,t) << endl << endl;
+                << " e: " << graph.subMaxFlowPair(s,t) << endl << endl;
                 break;
             case 2:
                 break;

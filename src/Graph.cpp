@@ -68,6 +68,22 @@ int Graph::maxFlowPair(Vertex *s, Vertex *t) {
     return maxFlow;
 }
 
+int Graph::subMaxFlowPair(Vertex *s, Vertex *t) {
+    int maxFlow = 0;
+    //reset all vertexes and edges
+    for(auto & it : this->stationsSet){
+        Vertex *v = it.second;
+        v->reset();
+    }
+    // repeat until there is no more augmenting path from s to t
+    while (subFindAugmentingPath(s, t)){
+        int f = findMinResidualAlongPath(s,t);
+        augmentFlowAlongPath(s,t,f);
+        maxFlow += f;
+    }
+    return maxFlow;
+}
+
 /**
  * Determine, from all pairs of stations, which ones (if more than one) require the
  * most amount of trains when taking full advantage of the existing network capacity
@@ -212,6 +228,29 @@ bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
         }
         for(auto e : v->getEdges()){
             testAndVisit(q, e->getReverse(), e->getOrig(), e->getOccupied());
+        }
+    }
+    return t->isVisited();
+}
+
+bool Graph::subFindAugmentingPath(Vertex *s, Vertex *t) {
+    for(auto v : this->stationsSet) v.second->setVisited(false);
+    //BFS
+    s->setVisited(true);
+    std::queue<Vertex *> q;
+    q.push(s);
+    while(!q.empty() && !t->isVisited()){
+        Vertex *v = q.front();
+        q.pop();
+        for(auto e : v->getEdges()){
+            if(e->getSwitch()) {
+                testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getOccupied());
+            }
+        }
+        for(auto e : v->getEdges()){
+            if(e->getSwitch()) {
+                testAndVisit(q, e->getReverse(), e->getOrig(), e->getOccupied());
+            }
         }
     }
     return t->isVisited();
