@@ -167,14 +167,22 @@ std::pair<int,int> Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
 
 /**
  * Creates a new graph that is a subgraph of the original one
- * @return subgraph
+ * @param edges vector with pairs of vertices to disable/enable the edge between them
  */
-Graph Graph::generateSubGraph(std::vector<Vertex*> toRemove) {
-    Graph subGraph = *this;
-    for(auto i = toRemove.begin(); i != toRemove.end(); i += 2) {
-        subGraph.removeNetwork(*i, *i + 1);
+void Graph::generateSubGraph(std::vector<Vertex*> edges) {
+    for(auto i = edges.begin(); i != edges.end(); i += 2) {
+        (*i)->disconnectEdge(*(i+1));
     }
-    return subGraph;
+}
+
+/**
+ * Flips the boolean on the target edges
+ * @param s source station
+ * @param t target station
+ */
+void Graph::switchEdge(Vertex *s, Vertex *t) { 
+    s->disconnectEdge(t);
+    t->disconnectEdge(s);
 }
 
 /**
@@ -198,6 +206,8 @@ std::vector<std::pair<Vertex, int>> Graph::mostAffectedStations(const Graph& sub
     return {};
 }
 
+int Graph::maxFlowSub(Vertex *s, Vertex *t) { return 0; }
+
 bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
     for(auto v : this->stationsSet) v.second->setVisited(false);
     //BFS
@@ -208,10 +218,14 @@ bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
         Vertex *v = q.front();
         q.pop();
         for(auto e : v->getEdges()){
-            testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getOccupied());
+            if(e->getSwitch()) {
+                testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getOccupied());
+            }
         }
         for(auto e : v->getEdges()){
-            testAndVisit(q, e->getReverse(), e->getOrig(), e->getOccupied());
+            if(e->getSwitch()) {
+                testAndVisit(q, e->getReverse(), e->getOrig(), e->getOccupied());
+            }
         }
     }
     return t->isVisited();

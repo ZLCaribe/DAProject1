@@ -85,6 +85,14 @@ void Vertex::setDist(int d) {
     this->dist = d;
 }
 
+void Vertex::disconnectEdge(Vertex* t) {
+    for(auto i = edges.begin(); i != edges.end(); i++) {
+        if((*i)->getDest() == t) {
+            return (*i)->switchEdge();
+        }
+    }
+}
+
 bool Vertex::operator<(const Vertex *v) const {
     return this->dist > v->dist;
 }
@@ -109,9 +117,11 @@ std::string Edge::getService() {
     return service;
 }
 
-void Edge::setOccupied(int occup) {
-    this->occupied = occup;
+void Edge::switchEdge() {
+    subgraph != subgraph;
 }
+
+void Edge::setOccupied(int occup) { this->occupied = occup; }
 
 Edge *Edge::getReverse() const {
     return this->reverse;
@@ -127,4 +137,8 @@ void Edge::reset() {
 
 int Edge::getWeight() const {
     return this->weight;
+}
+
+bool Edge::getSwitch() { 
+    return subgraph; 
 }

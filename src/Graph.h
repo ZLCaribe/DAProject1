@@ -30,12 +30,15 @@ public:
     std::pair<int,int> costOptmizationMaxFlowPair(Vertex *s, Vertex *t);
 
     //Reliability and Sensitivity to Line Failures
-    Graph generateSubGraph(std::vector<Vertex*> toRemove);
+    void generateSubGraph(std::vector<Vertex*> toDisable);
+    void switchEdge(Vertex* s, Vertex* t);
     std::vector<std::pair<Vertex,int>> mostAffectedStations(const Graph& subgraph, int k);
+    int maxFlowSub(Vertex *s, Vertex *t);
 
     //Basic Service Metrics
     int maxFlowPair(Vertex *s, Vertex *t);
     std::pair<int, std::vector<Vertex *>> getPairsWithMaxFlow();
+
     //TODO - 2.3. Municipios/Distritos com maior flow?
     int maxStationFlow(Vertex *station);
 };

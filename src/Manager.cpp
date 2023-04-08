@@ -175,25 +175,25 @@ void Manager::costOptmization() {
 void Manager::lineFailuresMenu() {
     bool done = false;
     Vertex *s = nullptr, *t = nullptr;
-    vector<Vertex*> toRemove;
+    vector<Vertex*> edges;
 
     while (!done) {
         if((s = inputStation("Insira a estacao de origem da edge a remover")) == nullptr) {
-            cout << "Operação cancelada" << endl;
+            cout << "Operação concluida" << endl;
             done = true;
             continue;
         }
         if((t = inputStation("Insira a estacao de destino da edge a remover")) == nullptr) {
-            cout << "Operação cancelada" << endl;
+            cout << "Operação concluida" << endl;
             done = true;
             continue;
         }
 
-        toRemove.push_back(s);
-        toRemove.push_back(t);
+        edges.push_back(s);
+        edges.push_back(t);
     }
 
-    Graph subgraph = this->graph.generateSubGraph(toRemove);
+    graph.generateSubGraph(edges);
     int i = 0;
 
     while(i != 3){
@@ -217,7 +217,7 @@ void Manager::lineFailuresMenu() {
                 }
 
                 cout << "O fluxo maximo partindo de " << s->getName() << " com destino a " << t->getName()
-                << " e: " << subgraph.maxFlowPair(s,t) << endl << endl;
+                << " e: " << graph.maxFlowPair(s,t) << endl << endl;
                 break;
             case 2:
                 break;
@@ -234,10 +234,11 @@ void Manager::lineFailuresMenu() {
     auto report = this->graph.mostAffectedStations(subgraph,k);
     int j = 1;
     cout << "Top " << k << " estacoes mais afetadas pelas falhas:" << endl;
-    for(auto x : report){
+    for(auto x : report) {
         cout << "Top " << j++ << ":" << x.first.getName() << endl;
         cout << "Reducao no fluxo" << x.second << endl << endl;
-    }*/
+    }
+    */
 }
 
 Vertex *Manager::inputStation(const string& message) {
