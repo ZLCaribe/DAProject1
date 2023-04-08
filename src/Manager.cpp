@@ -137,7 +137,25 @@ void Manager::basicMetricsMenu() {
                 cout << endl;
                 break;
             case 3:
-                //TODO
+                i = 0;
+                while(i != 3) {
+                    cout << "Quer saber a classificacao por municipalidades ou distritos?" << endl;
+                    cout << "1: Municipalidades" << endl;
+                    cout << "2: Distritos" << endl;
+                    cout << "3: Sair" << endl;
+                    cout << "opcao: ";
+                    cin >> i;
+                    std::vector<std::pair<std::string, int>> x;
+                    bool MorD = i == 2;
+                    int k;
+                    if(i <= 2 && i >= 1){
+                        cout << "Quantos " << (MorD?"distritos":"municipios") << " quer ver? ";
+                        cin >> k;
+                        if(k < 1) continue;
+                        printPriorities(this->graph.getBudgetPriorities(MorD, k),MorD);
+                    }else if(i == 3) cout << "A sair..." << endl;
+                    else cout << "Selecione uma opcao valida!" << endl;
+                }
                 break;
             case 4:
                 if((m = inputStation("Insira a estacao que deseja saber o fluxo maximo de entrada: ")) == nullptr){
@@ -257,5 +275,15 @@ Vertex *Manager::inputStation(const string& message) {
             flag = 0;
             return temp;
         }else cout << "Estacao nao encontrada insira um nome diferente" << endl;
+    }
+}
+
+void Manager::printPriorities(const vector<pair<string, int>>& v, bool MorD) {
+    int i = 1;
+    cout << "De acordo com o numero maximo de trens que podem chegar nas estacoes de cada "
+    << (MorD?"distrito":"municipio") << endl;
+    cout << "O top " << v.size() << (MorD?" distrito":" municipio") << " e: " <<endl;
+    for(const auto& item : v){
+        cout << i++ << ": " << item.first << " - " << item.second << endl;
     }
 }

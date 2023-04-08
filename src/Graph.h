@@ -36,7 +36,7 @@ public:
     //Basic Service Metrics
     int maxFlowPair(Vertex *s, Vertex *t);
     std::pair<int, std::vector<Vertex *>> getPairsWithMaxFlow();
-    //TODO - 2.3. Municipios/Distritos com maior flow?
+    std::vector<std::pair<std::string, int>> getBudgetPriorities(bool MorD, int k);
     int maxStationFlow(Vertex *station);
 };
 

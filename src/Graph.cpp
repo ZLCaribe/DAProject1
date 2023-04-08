@@ -263,3 +263,24 @@ void Graph::removeNetwork(Vertex *s, Vertex *t) {
     s->deleteEdge(t);
     t->deleteEdge(s);
 }
+
+bool compPair(const std::pair<std::string, int>& p1, const std::pair<std::string, int>& p2){
+    return p1.second > p2.second;
+}
+
+std::vector<std::pair<std::string, int>> Graph::getBudgetPriorities(bool MorD, int k) {
+    std::unordered_map<std::string ,int> r;
+    for(const auto& it : this->stationsSet){
+        Vertex *station = it.second;
+        std::string pos =  MorD?station->getDistrict():station->getMunicipality();
+        if(r.find(pos) == r.end()) r[pos] = this->maxStationFlow(station);
+        else r[pos] = r[pos] + this->maxStationFlow(station);
+    }
+    std::vector<std::pair<std::string ,int>> v = {};
+    for(const auto& it : r){
+        v.emplace_back(it);
+    }
+    std::sort(v.begin(), v.end(), compPair);
+    if(k < v.size()) v.erase(v.begin() + k,v.end());
+    return v;
+}

@@ -22,6 +22,7 @@ public:
     void lineFailuresMenu();
 
     Vertex *inputStation(const std::string& message);
+    static void printPriorities(const std::vector<std::pair<std::string,int>>& v, bool MorD);
 };
 
 
