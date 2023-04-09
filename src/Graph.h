@@ -31,8 +31,8 @@ public:
     std::pair<int,int> costOptmizationMaxFlowPair(Vertex *s, Vertex *t);
 
     //Reliability and Sensitivity to Line Failures
-    Graph generateSubGraph(std::vector<Vertex*> toRemove);
-    std::vector<std::pair<Vertex,int>> mostAffectedStations(const Graph& subgraph, int k);
+    void generateSubGraph(std::vector<Vertex*> toRemove);
+    std::vector<std::pair<Vertex*,int>> mostAffectedStations(int k);
 
     //Basic Service Metrics
     int maxFlowPair(Vertex *s, Vertex *t);
@@ -40,6 +40,7 @@ public:
     std::pair<int, std::vector<Vertex *>> getPairsWithMaxFlow();
     std::vector<std::pair<std::string, int>> getBudgetPriorities(bool MorD, int k);
     int maxStationFlow(Vertex *station);
+    int submaxStationFlow(Vertex *station);
 };
 
 

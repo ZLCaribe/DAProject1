@@ -201,6 +201,9 @@ void Manager::lineFailuresMenu() {
             done = true;
             continue;
         }
+        for(auto a : s->getEdges()){
+            cout << a->getDest()->getName() << endl;
+        }
         if((t = inputStation("Insira a estacao de destino da edge a remover")) == nullptr) {
             cout << "Operação concluida" << endl;
             done = true;
@@ -210,7 +213,6 @@ void Manager::lineFailuresMenu() {
         edges.push_back(s);
         edges.push_back(t);
     }
-
     graph.generateSubGraph(edges);
     int i = 0;
 
@@ -238,6 +240,9 @@ void Manager::lineFailuresMenu() {
                 << " e: " << graph.subMaxFlowPair(s,t) << endl << endl;
                 break;
             case 2:
+                for(auto r : graph.mostAffectedStations(5)){
+                    cout << r.first->getName() << " - " << r.second << endl;
+                }
                 break;
             default:
                 cout << "Selecione uma opcao valida!" << endl;

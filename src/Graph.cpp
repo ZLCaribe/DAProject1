@@ -1,6 +1,7 @@
 #include "Graph.h"
 
 #include <utility>
+#include <algorithm>
 #include <iostream>
 #include <queue>
 #include <unordered_map>
@@ -134,6 +135,20 @@ int Graph::maxStationFlow(Vertex *station) {
     return r;
 }
 
+int Graph::submaxStationFlow(Vertex *station) {
+    //Adicionar nós temporários com arestas de capacidade infinita para os nós que só tem uma aresta
+    //depois usar maxFlowPair para calcular resultado (to be discussed)
+    this->addStation("Infinite sink","nowhere", "anywhere", "I don't know", "none");
+    for(auto v : this->stationsSet) if(v.second->getEdges().size() == 1 && v.second != station) {
+        this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDARD");
+    }
+    int r = this->subMaxFlowPair(this->stationsSet["Infinite sink"],station);
+    auto i  = this->stationsSet["Infinite sink"];
+    while(!i->getEdges().empty()) removeNetwork(i,i->getEdges().begin().operator*()->getDest());
+    this->removeStation(this->stationsSet["Infinite sink"]);
+    return r;
+}
+
 /**
  * Calculate the maximum amount of trains that can simultaneously travel between
  * two specific stations with minimum cost for the company
@@ -185,12 +200,20 @@ std::pair<int,int> Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
  * Creates a new graph that is a subgraph of the original one
  * @return subgraph
  */
-Graph Graph::generateSubGraph(std::vector<Vertex*> toRemove) {
-    Graph subGraph = *this;
-    for(auto i = toRemove.begin(); i != toRemove.end(); i += 2) {
-        subGraph.removeNetwork(*i, *i + 1);
+void Graph::generateSubGraph(std::vector<Vertex*> edges) {
+	/*
+    for(auto i = edges.begin(); i != edges.end(); i += 2) {
+        (*i)->disconnectEdge(*(i+1));
+        (*(i+1))->disconnectEdge(*i);
     }
-    return subGraph;
+	*/
+	for(auto i = 0; i < edges.size(); i += 2){
+		edges[i]->disconnectEdge(edges[i+1]);
+	}
+}
+
+bool sortHelper(std::pair<Vertex*, int> a, std::pair<Vertex*, int> b){
+    return a.second > b.second;
 }
 
 /**
@@ -202,7 +225,7 @@ Graph Graph::generateSubGraph(std::vector<Vertex*> toRemove) {
  * where the first component is the name of the station and the second is how much the flow
  * of the station was reduced
  */
-std::vector<std::pair<Vertex, int>> Graph::mostAffectedStations(const Graph& subgraph, int k) {
+std::vector<std::pair<Vertex*, int>> Graph::mostAffectedStations(int k) {
     //Comparar a utilização da função maxFlowPair no grafo original com a utilização dela no subgrafo
     //para todos os pares, a redução a ser colocada no vetor de retorno deve ser a soma de
     //todas as diminuições quando a estação está como destino ou origem, ordenar o vetor pelo inteiro,
@@ -211,7 +234,21 @@ std::vector<std::pair<Vertex, int>> Graph::mostAffectedStations(const Graph& sub
     //OPÇÃO 2
     //Podemos usar a função maxStationFlow para comparar, deve ser BEM mais fácil e faz sentido também
     //Essa opção ficou um pouco menos viável quando parei para pensar que não sem muito bem como fazer maxStationFlow
-    return {};
+    int a, b;
+    std::vector<std::pair<Vertex*, int>> temp, result;
+   	for(auto i : this->stationsSet){
+		a= maxStationFlow(i.second);
+		b= submaxStationFlow(i.second);
+		temp.push_back({i.second,a-b});
+	}
+   	
+	std::sort(temp.begin(), temp.end(), sortHelper);
+
+    for(int j=0; j<k; j++){
+        result.push_back(temp[j]);
+    }
+
+	return result;
 }
 
 bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
