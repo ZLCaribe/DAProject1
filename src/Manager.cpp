@@ -10,6 +10,11 @@ using namespace std;
 
 Manager::Manager() = default;
 
+/**
+ * Reads a field from a cvs file
+ * @param line istringstream variable
+ * @param delim until which character should the line be read
+ */
 std::string getField(std::istringstream &line,char delim){
     std::string string1,string2;
     getline(line,string1,delim);
@@ -21,6 +26,9 @@ std::string getField(std::istringstream &line,char delim){
     }else return string1;
 }
 
+/**
+ * Reads both cvs files and adds the data to the graph
+ */
 void Manager::readFiles() {
     bool f = true;
 

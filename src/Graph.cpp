@@ -10,26 +10,46 @@
 
 Graph::Graph() = default;
 
+/**
+ * Return a pointer to a Vertex, being given it's name. 
+ * Compexity: O(1) in average but O(n) in the worst case
+ * @param name station's name
+ * @return pointer to a vertex
+ */
 Vertex *Graph::findStation(const std::string& name) {
     if (this->stationsSet.find(name) != this->stationsSet.end())
         return this->stationsSet[name];
     return nullptr;
 }
 
+/**
+ * Adds a station to the graph. 
+ * Compexity: O(1) in average but O(n) in the worst case
+ * @param name station's name
+ * @param district station's district
+ * @param municipality station's municipality
+ * @param township station's township
+ * @param line station's line
+ */
 void Graph::addStation(const std::string& name, const std::string& district, const std::string& municipality,
                        const std::string& township, const std::string& line) {
     if(this->findStation(name) == nullptr) {
         this->stationsSet[name] = new Vertex(name, district, municipality, township, line);
-    }else{
-        //std::cout << std::endl << "###########REPETIDO" << ++cnt << "###########" << std::endl;
     }
 }
 
+/**
+ * Adds a edge to the graph
+ * Compexity: O(n)
+ * @param orig edge's origin
+ * @param dest edge's destination
+ * @param capacity edge's capacity
+ * @param service edge's service
+ */
 void Graph::addNetwork(const std::string& orig, const std::string& dest, int capacity, const std::string& service) {
     if(this->findStation(orig) != nullptr && this->findStation(dest) != nullptr) {
         for(auto &a : this->stationsSet[orig]->getEdges()){
             if(a->getDest()->getName() == dest && a->getService() == service){
-                //std::cout << "duplicate edge found: " << orig << " - " << dest << std::endl;
                 return;
             }
         }
@@ -41,6 +61,10 @@ void Graph::addNetwork(const std::string& orig, const std::string& dest, int cap
     }
 }
 
+/**
+ * StationSet's getter
+ * @return StationSet
+ */
 std::unordered_map<std::string, Vertex *> Graph::getStationSet() const {
     return this->stationsSet;
 }
@@ -69,6 +93,14 @@ int Graph::maxFlowPair(Vertex *s, Vertex *t) {
     return maxFlow;
 }
 
+/**
+ * Calculate the maximum number of trains that can simultaneously travel between
+ * two specific stations in a network of reduced connectivity. Note that your implementation should take any valid source and destination
+ * stations as input.
+ * @param s source station
+ * @param t target station
+ * @return maximum number of trains
+ */
 int Graph::subMaxFlowPair(Vertex *s, Vertex *t) {
     int maxFlow = 0;
     //reset all vertexes and edges
@@ -118,12 +150,11 @@ std::pair<int,std::vector<Vertex *>> Graph::getPairsWithMaxFlow() {
 /**
  * Report the maximum number of trains that can simultaneously arrive at a given station,
  * taking into consideration the entire railway grid.
+ * Compexity: 
  * @param station
  * @return maximum number of trains
  */
 int Graph::maxStationFlow(Vertex *station) {
-    //Adicionar nós temporários com arestas de capacidade infinita para os nós que só tem uma aresta
-    //depois usar maxFlowPair para calcular resultado (to be discussed)
     this->addStation("Infinite sink","nowhere", "anywhere", "I don't know", "none");
     for(auto v : this->stationsSet) if(v.second->getEdges().size() == 1 && v.second != station) {
         this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDARD");
@@ -135,9 +166,14 @@ int Graph::maxStationFlow(Vertex *station) {
     return r;
 }
 
+/**
+ * Report the maximum number of trains that can simultaneously arrive at a given station,
+ * taking into consideration the entire railway grid in a network of reduced connectivity.
+ * Compexity: 
+ * @param station
+ * @return maximum number of trains
+ */
 int Graph::submaxStationFlow(Vertex *station) {
-    //Adicionar nós temporários com arestas de capacidade infinita para os nós que só tem uma aresta
-    //depois usar maxFlowPair para calcular resultado (to be discussed)
     this->addStation("Infinite sink","nowhere", "anywhere", "I don't know", "none");
     for(auto v : this->stationsSet) if(v.second->getEdges().size() == 1 && v.second != station) {
         this->addNetwork("Infinite sink",v.first,INT32_MAX,"STANDARD");
@@ -151,7 +187,8 @@ int Graph::submaxStationFlow(Vertex *station) {
 
 /**
  * Calculate the maximum amount of trains that can simultaneously travel between
- * two specific stations with minimum cost for the company
+ * two specific stations with minimum cost for the company. 
+ * Compexity: O(|E|+|V|)
  * @param s source station
  * @param t target station
  * @return Minimum cost of the route
@@ -198,15 +235,10 @@ std::pair<int,int> Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
 
 /**
  * Creates a new graph that is a subgraph of the original one
+ * Compexity: O(n)
  * @return subgraph
  */
 void Graph::generateSubGraph(std::vector<Vertex*> edges) {
-	/*
-    for(auto i = edges.begin(); i != edges.end(); i += 2) {
-        (*i)->disconnectEdge(*(i+1));
-        (*(i+1))->disconnectEdge(*i);
-    }
-	*/
 	for(auto i = 0; i < edges.size(); i += 2){
 		edges[i]->disconnectEdge(edges[i+1]);
 	}
@@ -219,6 +251,7 @@ bool sortHelper(std::pair<Vertex*, int> a, std::pair<Vertex*, int> b){
 /**
  * Provide a report on the stations that are the most affected by each segment failure,
  * i.e., the top-k most affected stations for each segment to be considered.
+ * Compexity: 
  * @param subgraph original with reduced connectivity
  * @param k number of station to return
  * @return vector of pairs(TODO maybe a heap, or anything that sort automatically could be a better idea)
@@ -226,14 +259,6 @@ bool sortHelper(std::pair<Vertex*, int> a, std::pair<Vertex*, int> b){
  * of the station was reduced
  */
 std::vector<std::pair<Vertex*, int>> Graph::mostAffectedStations(int k) {
-    //Comparar a utilização da função maxFlowPair no grafo original com a utilização dela no subgrafo
-    //para todos os pares, a redução a ser colocada no vetor de retorno deve ser a soma de
-    //todas as diminuições quando a estação está como destino ou origem, ordenar o vetor pelo inteiro,
-    //depois remover dele as que passarem do ‘top-k’
-
-    //OPÇÃO 2
-    //Podemos usar a função maxStationFlow para comparar, deve ser BEM mais fácil e faz sentido também
-    //Essa opção ficou um pouco menos viável quando parei para pensar que não sem muito bem como fazer maxStationFlow
     int a, b;
     std::vector<std::pair<Vertex*, int>> temp, result;
    	for(auto i : this->stationsSet){
@@ -331,10 +356,21 @@ void Graph::augmentFlowAlongPath(Vertex *s, Vertex *t, int f) {
     }
 }
 
+/**
+ * Removes a station from the set. 
+ * Compexity: O(1) in average but O(n) in the worst case
+ * @param v Vertex to be removed
+ */
 void Graph::removeStation(Vertex *v) {
     this->stationsSet.erase(v->getName());
 }
 
+/**
+ * Removes a edge from the set
+ * Compexity: O(n)
+ * @param v origin Vertex to be removed
+ * @param t origin Vertex to be removed
+ */
 void Graph::removeNetwork(Vertex *s, Vertex *t) {
     s->deleteEdge(t);
     t->deleteEdge(s);
@@ -343,6 +379,7 @@ void Graph::removeNetwork(Vertex *s, Vertex *t) {
 bool compPair(const std::pair<std::string, int>& p1, const std::pair<std::string, int>& p2){
     return p1.second > p2.second;
 }
+
 
 std::vector<std::pair<std::string, int>> Graph::getBudgetPriorities(bool MorD, int k) {
     std::unordered_map<std::string ,int> r;
