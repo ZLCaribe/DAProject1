@@ -1,0 +1,348 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}} ()
+\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_graph_a8e1fa93140ac0de999694c51cf32baa3}{find\+Station}} (const std\+::string \&name)
+\item 
+void \mbox{\hyperlink{class_graph_ab02c265d70b2b11a2344bff0b793d6e7}{add\+Station}} (const std\+::string \&name, const std\+::string \&district, const std\+::string \&municipality, const std\+::string \&township, const std\+::string \&line)
+\item 
+void \mbox{\hyperlink{class_graph_afd527f787ebf15885eaa517b11411528}{remove\+Station}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$v)
+\item 
+void \mbox{\hyperlink{class_graph_af45c480769a8050e669aeeadcb2a94bb}{add\+Network}} (const std\+::string \&orig, const std\+::string \&dest, int capacity, const std\+::string \&service)
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a4ddeb6a246dbe0ce0349f875eaad3554}{get\+Station\+Set}} () const
+\item 
+bool \mbox{\hyperlink{class_graph_a3b5af5d9fba5bac37ed469fa3d8e5f1b}{find\+Augmenting\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\item 
+bool \mbox{\hyperlink{class_graph_aa749049707e4ba75f96ffb93f46583fe}{sub\+Find\+Augmenting\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\item 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_graph_a107afbe0e15e6ceb82f505d99d40883f}{cost\+Optmization\+Max\+Flow\+Pair}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\item 
+void \mbox{\hyperlink{class_graph_ab2967d3d24c437497e8d8db0f592cc74}{generate\+Sub\+Graph}} (std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ to\+Remove)
+\item 
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$, int $>$ $>$ \mbox{\hyperlink{class_graph_a58c9b3e894f76e3d2a33e20bffd88e9b}{most\+Affected\+Stations}} (int k)
+\item 
+int \mbox{\hyperlink{class_graph_a2d69f9ecb3200ae107298051931dcde9}{max\+Flow\+Pair}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\item 
+int \mbox{\hyperlink{class_graph_a398ab7a83d7f2134a33c97cc865389f6}{sub\+Max\+Flow\+Pair}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\item 
+std\+::pair$<$ int, std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_graph_a6733da7eceb10c1527d473afa3086104}{get\+Pairs\+With\+Max\+Flow}} ()
+\item 
+std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \mbox{\hyperlink{class_graph_a53ef082ede3ab6d83165ef040e6c41a2}{get\+Budget\+Priorities}} (bool MorD, int k)
+\item 
+int \mbox{\hyperlink{class_graph_af687ad4f735d8978a1600cc0895639e5}{max\+Station\+Flow}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$station)
+\item 
+int \mbox{\hyperlink{class_graph_a29afed9063e8bcd8e11f57d08e5c3e1d}{submax\+Station\+Flow}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$station)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_graph_a8e93d4dc0029653e95b071927d11ad89}{remove\+Network}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$v, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\item 
+static int \mbox{\hyperlink{class_graph_abe58a8343a698d6419be948f07ea1bd9}{find\+Min\+Residual\+Along\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\item 
+static void \mbox{\hyperlink{class_graph_a0faaae3cf170bb522742079807896d05}{test\+And\+Visit}} (std\+::queue$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \&q, \mbox{\hyperlink{class_edge}{Edge}} $\ast$e, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$w, int residual)
+\item 
+static void \mbox{\hyperlink{class_graph_a3a56b45f50a8a364d88b6670ed05ab5c}{augment\+Flow\+Along\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t, int f)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}\label{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_af45c480769a8050e669aeeadcb2a94bb}\label{class_graph_af45c480769a8050e669aeeadcb2a94bb}} 
+\index{Graph@{Graph}!addNetwork@{addNetwork}}
+\index{addNetwork@{addNetwork}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addNetwork()}{addNetwork()}}
+{\footnotesize\ttfamily void Graph\+::add\+Network (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{orig,  }\item[{const std\+::string \&}]{dest,  }\item[{int}]{capacity,  }\item[{const std\+::string \&}]{service }\end{DoxyParamCaption})}
+
+Adds a edge to the graph Complexity\+: O(n) 
+\begin{DoxyParams}{Parameters}
+{\em orig} & edge\textquotesingle{}s origin \\
+\hline
+{\em dest} & edge\textquotesingle{}s destination \\
+\hline
+{\em capacity} & edge\textquotesingle{}s capacity \\
+\hline
+{\em service} & edge\textquotesingle{}s service \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_ab02c265d70b2b11a2344bff0b793d6e7}\label{class_graph_ab02c265d70b2b11a2344bff0b793d6e7}} 
+\index{Graph@{Graph}!addStation@{addStation}}
+\index{addStation@{addStation}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addStation()}{addStation()}}
+{\footnotesize\ttfamily void Graph\+::add\+Station (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::string \&}]{district,  }\item[{const std\+::string \&}]{municipality,  }\item[{const std\+::string \&}]{township,  }\item[{const std\+::string \&}]{line }\end{DoxyParamCaption})}
+
+Adds a station to the graph. Complexity\+: O(1) in average but O(n) in the worst case 
+\begin{DoxyParams}{Parameters}
+{\em name} & station\textquotesingle{}s name \\
+\hline
+{\em district} & station\textquotesingle{}s district \\
+\hline
+{\em municipality} & station\textquotesingle{}s municipality \\
+\hline
+{\em township} & station\textquotesingle{}s township \\
+\hline
+{\em line} & station\textquotesingle{}s line \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a3a56b45f50a8a364d88b6670ed05ab5c}\label{class_graph_a3a56b45f50a8a364d88b6670ed05ab5c}} 
+\index{Graph@{Graph}!augmentFlowAlongPath@{augmentFlowAlongPath}}
+\index{augmentFlowAlongPath@{augmentFlowAlongPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{augmentFlowAlongPath()}{augmentFlowAlongPath()}}
+{\footnotesize\ttfamily void Graph\+::augment\+Flow\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t,  }\item[{int}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Updates vertexes flow values along path 
+\begin{DoxyParams}{Parameters}
+{\em s} & start of the path \\
+\hline
+{\em t} & end of the path \\
+\hline
+{\em f} & new flow \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a107afbe0e15e6ceb82f505d99d40883f}\label{class_graph_a107afbe0e15e6ceb82f505d99d40883f}} 
+\index{Graph@{Graph}!costOptmizationMaxFlowPair@{costOptmizationMaxFlowPair}}
+\index{costOptmizationMaxFlowPair@{costOptmizationMaxFlowPair}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{costOptmizationMaxFlowPair()}{costOptmizationMaxFlowPair()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, int $>$ Graph\+::cost\+Optmization\+Max\+Flow\+Pair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+Calculate the maximum amount of trains that can simultaneously travel between two specific stations with minimum cost for the company. Complexity\+: O($\vert$\+E$\vert$+$\vert$\+V$\vert$) 
+\begin{DoxyParams}{Parameters}
+{\em s} & source station \\
+\hline
+{\em t} & target station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Minimum cost of the route 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a3b5af5d9fba5bac37ed469fa3d8e5f1b}\label{class_graph_a3b5af5d9fba5bac37ed469fa3d8e5f1b}} 
+\index{Graph@{Graph}!findAugmentingPath@{findAugmentingPath}}
+\index{findAugmentingPath@{findAugmentingPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findAugmentingPath()}{findAugmentingPath()}}
+{\footnotesize\ttfamily bool Graph\+::find\+Augmenting\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+Finds a path with available flow starting at vertex s and ending at vertex t 
+\begin{DoxyParams}{Parameters}
+{\em s} & starting point \\
+\hline
+{\em t} & ending point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+wheter or not there is an available path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_abe58a8343a698d6419be948f07ea1bd9}\label{class_graph_abe58a8343a698d6419be948f07ea1bd9}} 
+\index{Graph@{Graph}!findMinResidualAlongPath@{findMinResidualAlongPath}}
+\index{findMinResidualAlongPath@{findMinResidualAlongPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findMinResidualAlongPath()}{findMinResidualAlongPath()}}
+{\footnotesize\ttfamily int Graph\+::find\+Min\+Residual\+Along\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Finds the minimal residual flow along path between vertex s and t 
+\begin{DoxyParams}{Parameters}
+{\em s} & start of the path \\
+\hline
+{\em t} & end of the path \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+minimal residual flow along path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a8e1fa93140ac0de999694c51cf32baa3}\label{class_graph_a8e1fa93140ac0de999694c51cf32baa3}} 
+\index{Graph@{Graph}!findStation@{findStation}}
+\index{findStation@{findStation}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findStation()}{findStation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ Graph\+::find\+Station (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+Return a pointer to a \mbox{\hyperlink{class_vertex}{Vertex}}, being given it\textquotesingle{}s name. Complexity\+: O(1) in average but O(n) in the worst case 
+\begin{DoxyParams}{Parameters}
+{\em name} & station\textquotesingle{}s name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to a vertex 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ab2967d3d24c437497e8d8db0f592cc74}\label{class_graph_ab2967d3d24c437497e8d8db0f592cc74}} 
+\index{Graph@{Graph}!generateSubGraph@{generateSubGraph}}
+\index{generateSubGraph@{generateSubGraph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{generateSubGraph()}{generateSubGraph()}}
+{\footnotesize\ttfamily void Graph\+::generate\+Sub\+Graph (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$}]{edges }\end{DoxyParamCaption})}
+
+Creates a new graph that is a subgraph of the original one Complexity\+: O(n) \begin{DoxyReturn}{Returns}
+subgraph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a53ef082ede3ab6d83165ef040e6c41a2}\label{class_graph_a53ef082ede3ab6d83165ef040e6c41a2}} 
+\index{Graph@{Graph}!getBudgetPriorities@{getBudgetPriorities}}
+\index{getBudgetPriorities@{getBudgetPriorities}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getBudgetPriorities()}{getBudgetPriorities()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ Graph\+::get\+Budget\+Priorities (\begin{DoxyParamCaption}\item[{bool}]{MorD,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+Report the top-\/k municipalities and districts, regarding their transportation needs Complexity\+: O($\vert$\+V$\vert$ $\ast$ ($\vert$\+V$\vert$ $\ast$ $\vert$\+E$\vert$$^\wedge$2)) 
+\begin{DoxyParams}{Parameters}
+{\em MorD} & if true it will calculate municipalities if false it will calculate districts \\
+\hline
+{\em k} & top-\/k municipalities/districts \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of pairs in descending order by the second attribute the first atribute is the municipality/disctrict the second is the sum the max\+Station\+Flow of it\textquotesingle{}s stations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a6733da7eceb10c1527d473afa3086104}\label{class_graph_a6733da7eceb10c1527d473afa3086104}} 
+\index{Graph@{Graph}!getPairsWithMaxFlow@{getPairsWithMaxFlow}}
+\index{getPairsWithMaxFlow@{getPairsWithMaxFlow}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getPairsWithMaxFlow()}{getPairsWithMaxFlow()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ $>$ Graph\+::get\+Pairs\+With\+Max\+Flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Determine, from all pairs of stations, which ones (if more than one) require the most amount of trains when taking full advantage of the existing network capacity Complexity\+: O($\vert$\+V$\vert$$^\wedge$2 $\ast$ ($\vert$\+V$\vert$ $\ast$ $\vert$\+E$\vert$$^\wedge$2)) \begin{DoxyReturn}{Returns}
+Stations with biggest flow capacity being the odd indexes stations the source and the even indexes the target 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a4ddeb6a246dbe0ce0349f875eaad3554}\label{class_graph_a4ddeb6a246dbe0ce0349f875eaad3554}} 
+\index{Graph@{Graph}!getStationSet@{getStationSet}}
+\index{getStationSet@{getStationSet}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getStationSet()}{getStationSet()}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$ std\+::string, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Graph\+::get\+Station\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Station\+Set\textquotesingle{}s getter \begin{DoxyReturn}{Returns}
+Station\+Set 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a2d69f9ecb3200ae107298051931dcde9}\label{class_graph_a2d69f9ecb3200ae107298051931dcde9}} 
+\index{Graph@{Graph}!maxFlowPair@{maxFlowPair}}
+\index{maxFlowPair@{maxFlowPair}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{maxFlowPair()}{maxFlowPair()}}
+{\footnotesize\ttfamily int Graph\+::max\+Flow\+Pair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+Calculate the maximum number of trains that can simultaneously travel between two specific stations. stations as input. Complexity\+: O($\vert$\+V$\vert$$\ast$$\vert$\+E$\vert$$^\wedge$2) 
+\begin{DoxyParams}{Parameters}
+{\em s} & source station \\
+\hline
+{\em t} & target station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum number of trains 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_af687ad4f735d8978a1600cc0895639e5}\label{class_graph_af687ad4f735d8978a1600cc0895639e5}} 
+\index{Graph@{Graph}!maxStationFlow@{maxStationFlow}}
+\index{maxStationFlow@{maxStationFlow}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{maxStationFlow()}{maxStationFlow()}}
+{\footnotesize\ttfamily int Graph\+::max\+Station\+Flow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{station }\end{DoxyParamCaption})}
+
+Report the maximum number of trains that can simultaneously arrive at a given station, taking into consideration the entire railway grid. Complexity\+: O($\vert$\+V$\vert$ $\ast$ $\vert$\+E$\vert$$^\wedge$2) 
+\begin{DoxyParams}{Parameters}
+{\em station} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum number of trains 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a58c9b3e894f76e3d2a33e20bffd88e9b}\label{class_graph_a58c9b3e894f76e3d2a33e20bffd88e9b}} 
+\index{Graph@{Graph}!mostAffectedStations@{mostAffectedStations}}
+\index{mostAffectedStations@{mostAffectedStations}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{mostAffectedStations()}{mostAffectedStations()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$, int $>$ $>$ Graph\+::most\+Affected\+Stations (\begin{DoxyParamCaption}\item[{int}]{k }\end{DoxyParamCaption})}
+
+Provide a report on the stations that are the most affected by each segment failure, i.\+e., the top-\/k most affected stations for each segment to be considered. Complexity\+: O( $\vert$\+V$\vert$ $\ast$ ($\vert$\+V$\vert$ $\ast$ $\vert$\+E$\vert$$^\wedge$2)) 
+\begin{DoxyParams}{Parameters}
+{\em k} & number of station to return \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of pairs where the first component is the name of the station and the second is how much the flow of the station was reduced 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a8e93d4dc0029653e95b071927d11ad89}\label{class_graph_a8e93d4dc0029653e95b071927d11ad89}} 
+\index{Graph@{Graph}!removeNetwork@{removeNetwork}}
+\index{removeNetwork@{removeNetwork}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{removeNetwork()}{removeNetwork()}}
+{\footnotesize\ttfamily void Graph\+::remove\+Network (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Removes a edge from the set Complexity\+: O(n) 
+\begin{DoxyParams}{Parameters}
+{\em v} & origin \mbox{\hyperlink{class_vertex}{Vertex}} to be removed \\
+\hline
+{\em t} & origin \mbox{\hyperlink{class_vertex}{Vertex}} to be removed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_afd527f787ebf15885eaa517b11411528}\label{class_graph_afd527f787ebf15885eaa517b11411528}} 
+\index{Graph@{Graph}!removeStation@{removeStation}}
+\index{removeStation@{removeStation}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{removeStation()}{removeStation()}}
+{\footnotesize\ttfamily void Graph\+::remove\+Station (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{v }\end{DoxyParamCaption})}
+
+Removes a station from the set. Complexity\+: O(1) in average but O(n) in the worst case 
+\begin{DoxyParams}{Parameters}
+{\em v} & \mbox{\hyperlink{class_vertex}{Vertex}} to be removed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_aa749049707e4ba75f96ffb93f46583fe}\label{class_graph_aa749049707e4ba75f96ffb93f46583fe}} 
+\index{Graph@{Graph}!subFindAugmentingPath@{subFindAugmentingPath}}
+\index{subFindAugmentingPath@{subFindAugmentingPath}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{subFindAugmentingPath()}{subFindAugmentingPath()}}
+{\footnotesize\ttfamily bool Graph\+::sub\+Find\+Augmenting\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+Finds a path with available flow in a network of reduced connectivity starting at vertex s and ending at vertex t 
+\begin{DoxyParams}{Parameters}
+{\em s} & starting point \\
+\hline
+{\em t} & ending point \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+wheter or not there is an available path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a398ab7a83d7f2134a33c97cc865389f6}\label{class_graph_a398ab7a83d7f2134a33c97cc865389f6}} 
+\index{Graph@{Graph}!subMaxFlowPair@{subMaxFlowPair}}
+\index{subMaxFlowPair@{subMaxFlowPair}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{subMaxFlowPair()}{subMaxFlowPair()}}
+{\footnotesize\ttfamily int Graph\+::sub\+Max\+Flow\+Pair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+Calculate the maximum number of trains that can simultaneously travel between two specific stations in a network of reduced connectivity. Complexity\+: O($\vert$\+V$\vert$$\ast$$\vert$\+E$\vert$$^\wedge$2) 
+\begin{DoxyParams}{Parameters}
+{\em s} & source station \\
+\hline
+{\em t} & target station \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum number of trains 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a29afed9063e8bcd8e11f57d08e5c3e1d}\label{class_graph_a29afed9063e8bcd8e11f57d08e5c3e1d}} 
+\index{Graph@{Graph}!submaxStationFlow@{submaxStationFlow}}
+\index{submaxStationFlow@{submaxStationFlow}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{submaxStationFlow()}{submaxStationFlow()}}
+{\footnotesize\ttfamily int Graph\+::submax\+Station\+Flow (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{station }\end{DoxyParamCaption})}
+
+Report the maximum number of trains that can simultaneously arrive at a given station, taking into consideration the entire railway grid in a network of reduced connectivity. Complexity\+: O($\vert$\+V$\vert$ $\ast$ $\vert$\+E$\vert$$^\wedge$2) 
+\begin{DoxyParams}{Parameters}
+{\em station} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum number of trains 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a0faaae3cf170bb522742079807896d05}\label{class_graph_a0faaae3cf170bb522742079807896d05}} 
+\index{Graph@{Graph}!testAndVisit@{testAndVisit}}
+\index{testAndVisit@{testAndVisit}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{testAndVisit()}{testAndVisit()}}
+{\footnotesize\ttfamily void Graph\+::test\+And\+Visit (\begin{DoxyParamCaption}\item[{std\+::queue$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \&}]{q,  }\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{w,  }\item[{int}]{residual }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Test if a vertex was visited and has available flow capacity then visit it 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+ZLAmo/\+One\+Drive/\+Documentos/\+Faculdade/\+FEUP/2\+Semestre/2\+Ano/\+DA/\+Project1/src/\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\item 
+C\+:/\+Users/\+ZLAmo/\+One\+Drive/\+Documentos/\+Faculdade/\+FEUP/2\+Semestre/2\+Ano/\+DA/\+Project1/src/\mbox{\hyperlink{_graph_8cpp}{Graph.\+cpp}}\end{DoxyCompactItemize}

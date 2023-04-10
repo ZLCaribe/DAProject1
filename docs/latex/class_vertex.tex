@@ -1,0 +1,313 @@
+\hypertarget{class_vertex}{}\doxysection{Vertex Class Reference}
+\label{class_vertex}\index{Vertex@{Vertex}}
+
+
+{\ttfamily \#include $<$Vertex\+Edge.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vertex_a9907f4059dbcca50e7b6c781fea8a44e}{Vertex}} (std\+::string \mbox{\hyperlink{class_vertex_a14e4b85b8ddd1204e3e79daea7eff8d8}{name}}, std\+::string \mbox{\hyperlink{class_vertex_a0980881ced715a18987d067fdd64d172}{district}}, std\+::string \mbox{\hyperlink{class_vertex_a2e791a46d0f4bc179bac1fcda4a68a05}{municipality}}, std\+::string \mbox{\hyperlink{class_vertex_aee67fa77334af67fb757c426dc2ab070}{township}}, std\+::string \mbox{\hyperlink{class_vertex_aa7c5fa8b343f194a81330b1aab82acb9}{line}})
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_a6eb5762b1c153330f608a0c2ed4a62fb}{get\+Name}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_abc6c240f8708cecf1b74054fd223a73d}{get\+District}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_a2d2ce1c76682945843c60f9fb63a9c4b}{get\+Municipality}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_a482d7eb03b49b22bee4223f50393d505}{get\+Township}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_a2c5de39b6e9da7501425119b0fd87082}{get\+Line}} ()
+\item 
+bool \mbox{\hyperlink{class_vertex_ada5caa9d52492a28504be75b506a33b2}{is\+Visited}} ()
+\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_vertex_a3e195827157be186407ce895fb86e43b}{get\+Path}} ()
+\item 
+int \mbox{\hyperlink{class_vertex_a8adaf96563455141f2e198959fe3e13f}{get\+Dist}} () const
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \& \mbox{\hyperlink{class_vertex_aa490133b2164dfc7b51e17e9bcc57e8e}{get\+Edges}} ()
+\item 
+void \mbox{\hyperlink{class_vertex_a15eeabbbb6d517af746ae137c6d5b595}{set\+Visited}} (bool \mbox{\hyperlink{class_vertex_aaef9f7de91b4b8f1752d391a1aae9c2e}{visited}})
+\item 
+void \mbox{\hyperlink{class_vertex_abe4bc30005eec65e775d0cd51f456460}{set\+Path}} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$\mbox{\hyperlink{class_vertex_a4e83821f961f6eb63ad210260ba0e1e2}{path}})
+\item 
+void \mbox{\hyperlink{class_vertex_acadb6d4999581763a0aee6f81f11f7d4}{set\+Dist}} (int d)
+\item 
+void \mbox{\hyperlink{class_vertex_a14a7af7daf44dcc42e5a65d4b2f59aec}{disconnect\+Edge}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\item 
+void \mbox{\hyperlink{class_vertex_a8680da16057ec72dde00eb7ebf43e4d7}{add\+Edge}} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$edge)
+\item 
+void \mbox{\hyperlink{class_vertex_afa9f4c18f0d7a1fe61c0dfd204d0f634}{delete\+Edge}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$v)
+\item 
+void \mbox{\hyperlink{class_vertex_a98d5b4be8c358aee171cc21690b22844}{reset}} ()
+\item 
+bool \mbox{\hyperlink{class_vertex_a824ead9d83f9e60cf11120e165ae6ec7}{operator$<$}} (const \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$v) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_a14e4b85b8ddd1204e3e79daea7eff8d8}{name}}
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_a0980881ced715a18987d067fdd64d172}{district}}
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_a2e791a46d0f4bc179bac1fcda4a68a05}{municipality}}
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_aee67fa77334af67fb757c426dc2ab070}{township}}
+\item 
+std\+::string \mbox{\hyperlink{class_vertex_aa7c5fa8b343f194a81330b1aab82acb9}{line}}
+\item 
+bool \mbox{\hyperlink{class_vertex_aaef9f7de91b4b8f1752d391a1aae9c2e}{visited}} = false
+\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_vertex_a4e83821f961f6eb63ad210260ba0e1e2}{path}} = nullptr
+\item 
+int \mbox{\hyperlink{class_vertex_a4299c7826ba6d099ecd86127bbb798db}{dist}} = INT32\+\_\+\+MAX
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \mbox{\hyperlink{class_vertex_af8fa521bb7abbf84504bb0259339a2e0}{edges}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_vertex_a9907f4059dbcca50e7b6c781fea8a44e}\label{class_vertex_a9907f4059dbcca50e7b6c781fea8a44e}} 
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\index{Vertex@{Vertex}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{Vertex()}{Vertex()}}
+{\footnotesize\ttfamily Vertex\+::\+Vertex (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::string}]{district,  }\item[{std\+::string}]{municipality,  }\item[{std\+::string}]{township,  }\item[{std\+::string}]{line }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_vertex}{Vertex}} constructor 
+\begin{DoxyParams}{Parameters}
+{\em name} & station\textquotesingle{}s name \\
+\hline
+{\em district} & station\textquotesingle{}s district \\
+\hline
+{\em municipality} & station\textquotesingle{}s municipality \\
+\hline
+{\em township} & station\textquotesingle{}s township \\
+\hline
+{\em line} & station\textquotesingle{}s line \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_vertex_a8680da16057ec72dde00eb7ebf43e4d7}\label{class_vertex_a8680da16057ec72dde00eb7ebf43e4d7}} 
+\index{Vertex@{Vertex}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily void Vertex\+::add\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{edge }\end{DoxyParamCaption})}
+
+adds an \mbox{\hyperlink{class_edge}{Edge}} to the vertex 
+\begin{DoxyParams}{Parameters}
+{\em edge} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_vertex_afa9f4c18f0d7a1fe61c0dfd204d0f634}\label{class_vertex_afa9f4c18f0d7a1fe61c0dfd204d0f634}} 
+\index{Vertex@{Vertex}!deleteEdge@{deleteEdge}}
+\index{deleteEdge@{deleteEdge}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{deleteEdge()}{deleteEdge()}}
+{\footnotesize\ttfamily void Vertex\+::delete\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{v }\end{DoxyParamCaption})}
+
+delets an \mbox{\hyperlink{class_edge}{Edge}} from the vertex 
+\begin{DoxyParams}{Parameters}
+{\em v} & edges destination vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_vertex_a14a7af7daf44dcc42e5a65d4b2f59aec}\label{class_vertex_a14a7af7daf44dcc42e5a65d4b2f59aec}} 
+\index{Vertex@{Vertex}!disconnectEdge@{disconnectEdge}}
+\index{disconnectEdge@{disconnectEdge}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{disconnectEdge()}{disconnectEdge()}}
+{\footnotesize\ttfamily void Vertex\+::disconnect\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+disconnects this Vextex to another 
+\begin{DoxyParams}{Parameters}
+{\em t} & \mbox{\hyperlink{class_vertex}{Vertex}} at the other end of the edge \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_vertex_a8adaf96563455141f2e198959fe3e13f}\label{class_vertex_a8adaf96563455141f2e198959fe3e13f}} 
+\index{Vertex@{Vertex}!getDist@{getDist}}
+\index{getDist@{getDist}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{getDist()}{getDist()}}
+{\footnotesize\ttfamily int Vertex\+::get\+Dist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+returns the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s distance \begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_abc6c240f8708cecf1b74054fd223a73d}\label{class_vertex_abc6c240f8708cecf1b74054fd223a73d}} 
+\index{Vertex@{Vertex}!getDistrict@{getDistrict}}
+\index{getDistrict@{getDistrict}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{getDistrict()}{getDistrict()}}
+{\footnotesize\ttfamily std\+::string Vertex\+::get\+District (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s District \begin{DoxyReturn}{Returns}
+District 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_aa490133b2164dfc7b51e17e9bcc57e8e}\label{class_vertex_aa490133b2164dfc7b51e17e9bcc57e8e}} 
+\index{Vertex@{Vertex}!getEdges@{getEdges}}
+\index{getEdges@{getEdges}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{getEdges()}{getEdges()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \& Vertex\+::get\+Edges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s connected edges \begin{DoxyReturn}{Returns}
+vector of pointers to \mbox{\hyperlink{class_edge}{Edge}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_a2c5de39b6e9da7501425119b0fd87082}\label{class_vertex_a2c5de39b6e9da7501425119b0fd87082}} 
+\index{Vertex@{Vertex}!getLine@{getLine}}
+\index{getLine@{getLine}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{getLine()}{getLine()}}
+{\footnotesize\ttfamily std\+::string Vertex\+::get\+Line (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s Line \begin{DoxyReturn}{Returns}
+Line 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_a2d2ce1c76682945843c60f9fb63a9c4b}\label{class_vertex_a2d2ce1c76682945843c60f9fb63a9c4b}} 
+\index{Vertex@{Vertex}!getMunicipality@{getMunicipality}}
+\index{getMunicipality@{getMunicipality}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{getMunicipality()}{getMunicipality()}}
+{\footnotesize\ttfamily std\+::string Vertex\+::get\+Municipality (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s Municipality \begin{DoxyReturn}{Returns}
+Municipality 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_a6eb5762b1c153330f608a0c2ed4a62fb}\label{class_vertex_a6eb5762b1c153330f608a0c2ed4a62fb}} 
+\index{Vertex@{Vertex}!getName@{getName}}
+\index{getName@{getName}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Vertex\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s name \begin{DoxyReturn}{Returns}
+name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_a3e195827157be186407ce895fb86e43b}\label{class_vertex_a3e195827157be186407ce895fb86e43b}} 
+\index{Vertex@{Vertex}!getPath@{getPath}}
+\index{getPath@{getPath}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{getPath()}{getPath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} $\ast$ Vertex\+::get\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s Path \begin{DoxyReturn}{Returns}
+Path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_a482d7eb03b49b22bee4223f50393d505}\label{class_vertex_a482d7eb03b49b22bee4223f50393d505}} 
+\index{Vertex@{Vertex}!getTownship@{getTownship}}
+\index{getTownship@{getTownship}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{getTownship()}{getTownship()}}
+{\footnotesize\ttfamily std\+::string Vertex\+::get\+Township (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s Township \begin{DoxyReturn}{Returns}
+Township 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_ada5caa9d52492a28504be75b506a33b2}\label{class_vertex_ada5caa9d52492a28504be75b506a33b2}} 
+\index{Vertex@{Vertex}!isVisited@{isVisited}}
+\index{isVisited@{isVisited}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{isVisited()}{isVisited()}}
+{\footnotesize\ttfamily bool Vertex\+::is\+Visited (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns wether or not the \mbox{\hyperlink{class_vertex}{Vertex}} is visited \begin{DoxyReturn}{Returns}
+visited 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_vertex_a824ead9d83f9e60cf11120e165ae6ec7}\label{class_vertex_a824ead9d83f9e60cf11120e165ae6ec7}} 
+\index{Vertex@{Vertex}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Vertex\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{v }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{class_vertex_a98d5b4be8c358aee171cc21690b22844}\label{class_vertex_a98d5b4be8c358aee171cc21690b22844}} 
+\index{Vertex@{Vertex}!reset@{reset}}
+\index{reset@{reset}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Vertex\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+toggles the visited variable to false \mbox{\Hypertarget{class_vertex_acadb6d4999581763a0aee6f81f11f7d4}\label{class_vertex_acadb6d4999581763a0aee6f81f11f7d4}} 
+\index{Vertex@{Vertex}!setDist@{setDist}}
+\index{setDist@{setDist}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{setDist()}{setDist()}}
+{\footnotesize\ttfamily void Vertex\+::set\+Dist (\begin{DoxyParamCaption}\item[{int}]{d }\end{DoxyParamCaption})}
+
+gives a value to the Vexte\textquotesingle{}s distance 
+\begin{DoxyParams}{Parameters}
+{\em d} & distance \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_vertex_abe4bc30005eec65e775d0cd51f456460}\label{class_vertex_abe4bc30005eec65e775d0cd51f456460}} 
+\index{Vertex@{Vertex}!setPath@{setPath}}
+\index{setPath@{setPath}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{setPath()}{setPath()}}
+{\footnotesize\ttfamily void Vertex\+::set\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{path }\end{DoxyParamCaption})}
+
+sets the \mbox{\hyperlink{class_edge}{Edge}}\textquotesingle{}s path variable 
+\begin{DoxyParams}{Parameters}
+{\em path} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_vertex_a15eeabbbb6d517af746ae137c6d5b595}\label{class_vertex_a15eeabbbb6d517af746ae137c6d5b595}} 
+\index{Vertex@{Vertex}!setVisited@{setVisited}}
+\index{setVisited@{setVisited}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{setVisited()}{setVisited()}}
+{\footnotesize\ttfamily void Vertex\+::set\+Visited (\begin{DoxyParamCaption}\item[{bool}]{visited }\end{DoxyParamCaption})}
+
+changes the value of the \mbox{\hyperlink{class_vertex}{Vertex}}\textquotesingle{}s visited variable 
+\begin{DoxyParams}{Parameters}
+{\em visited} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_vertex_a4299c7826ba6d099ecd86127bbb798db}\label{class_vertex_a4299c7826ba6d099ecd86127bbb798db}} 
+\index{Vertex@{Vertex}!dist@{dist}}
+\index{dist@{dist}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{dist}{dist}}
+{\footnotesize\ttfamily int Vertex\+::dist = INT32\+\_\+\+MAX\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_a0980881ced715a18987d067fdd64d172}\label{class_vertex_a0980881ced715a18987d067fdd64d172}} 
+\index{Vertex@{Vertex}!district@{district}}
+\index{district@{district}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{district}{district}}
+{\footnotesize\ttfamily std\+::string Vertex\+::district\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_af8fa521bb7abbf84504bb0259339a2e0}\label{class_vertex_af8fa521bb7abbf84504bb0259339a2e0}} 
+\index{Vertex@{Vertex}!edges@{edges}}
+\index{edges@{edges}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{edges}{edges}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_edge}{Edge}}$\ast$$>$ Vertex\+::edges\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_aa7c5fa8b343f194a81330b1aab82acb9}\label{class_vertex_aa7c5fa8b343f194a81330b1aab82acb9}} 
+\index{Vertex@{Vertex}!line@{line}}
+\index{line@{line}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{line}{line}}
+{\footnotesize\ttfamily std\+::string Vertex\+::line\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_a2e791a46d0f4bc179bac1fcda4a68a05}\label{class_vertex_a2e791a46d0f4bc179bac1fcda4a68a05}} 
+\index{Vertex@{Vertex}!municipality@{municipality}}
+\index{municipality@{municipality}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{municipality}{municipality}}
+{\footnotesize\ttfamily std\+::string Vertex\+::municipality\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_a14e4b85b8ddd1204e3e79daea7eff8d8}\label{class_vertex_a14e4b85b8ddd1204e3e79daea7eff8d8}} 
+\index{Vertex@{Vertex}!name@{name}}
+\index{name@{name}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::string Vertex\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_a4e83821f961f6eb63ad210260ba0e1e2}\label{class_vertex_a4e83821f961f6eb63ad210260ba0e1e2}} 
+\index{Vertex@{Vertex}!path@{path}}
+\index{path@{path}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}}$\ast$ Vertex\+::path = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_aee67fa77334af67fb757c426dc2ab070}\label{class_vertex_aee67fa77334af67fb757c426dc2ab070}} 
+\index{Vertex@{Vertex}!township@{township}}
+\index{township@{township}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{township}{township}}
+{\footnotesize\ttfamily std\+::string Vertex\+::township\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_vertex_aaef9f7de91b4b8f1752d391a1aae9c2e}\label{class_vertex_aaef9f7de91b4b8f1752d391a1aae9c2e}} 
+\index{Vertex@{Vertex}!visited@{visited}}
+\index{visited@{visited}!Vertex@{Vertex}}
+\doxysubsubsection{\texorpdfstring{visited}{visited}}
+{\footnotesize\ttfamily bool Vertex\+::visited = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+ZLAmo/\+One\+Drive/\+Documentos/\+Faculdade/\+FEUP/2\+Semestre/2\+Ano/\+DA/\+Project1/src/\mbox{\hyperlink{_vertex_edge_8h}{Vertex\+Edge.\+h}}\item 
+C\+:/\+Users/\+ZLAmo/\+One\+Drive/\+Documentos/\+Faculdade/\+FEUP/2\+Semestre/2\+Ano/\+DA/\+Project1/src/\mbox{\hyperlink{_vertex_edge_8cpp}{Vertex\+Edge.\+cpp}}\end{DoxyCompactItemize}

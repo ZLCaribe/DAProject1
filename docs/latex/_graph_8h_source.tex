@@ -1,0 +1,54 @@
+\hypertarget{_graph_8h_source}{}\doxysection{Graph.\+h}
+\label{_graph_8h_source}\index{C:/Users/ZLAmo/OneDrive/Documentos/Faculdade/FEUP/2Semestre/2Ano/DA/Project1/src/Graph.h@{C:/Users/ZLAmo/OneDrive/Documentos/Faculdade/FEUP/2Semestre/2Ano/DA/Project1/src/Graph.h}}
+\mbox{\hyperlink{_graph_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef PROJECT1\_GRAPH\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define PROJECT1\_GRAPH\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_vertex_edge_8h}{VertexEdge.h}}"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{private}:}
+\DoxyCodeLine{13     std::unordered\_map<std::string, Vertex *> stationsSet;}
+\DoxyCodeLine{14 \textcolor{keyword}{public}:}
+\DoxyCodeLine{15     \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}();}
+\DoxyCodeLine{16     \mbox{\hyperlink{class_vertex}{Vertex}} *\mbox{\hyperlink{class_graph_a8e1fa93140ac0de999694c51cf32baa3}{findStation}}(\textcolor{keyword}{const} std::string\& name);}
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ab02c265d70b2b11a2344bff0b793d6e7}{addStation}}(\textcolor{keyword}{const} std::string\& name, \textcolor{keyword}{const} std::string\& district, \textcolor{keyword}{const} std::string\& municipality,}
+\DoxyCodeLine{18                     \textcolor{keyword}{const} std::string\& township, \textcolor{keyword}{const} std::string\& line);}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_afd527f787ebf15885eaa517b11411528}{removeStation}}(\mbox{\hyperlink{class_vertex}{Vertex}} *v);}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_af45c480769a8050e669aeeadcb2a94bb}{addNetwork}}(\textcolor{keyword}{const} std::string\& orig, \textcolor{keyword}{const} std::string\& dest, \textcolor{keywordtype}{int} capacity, \textcolor{keyword}{const} std::string\& service);}
+\DoxyCodeLine{21     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a8e93d4dc0029653e95b071927d11ad89}{removeNetwork}}(\mbox{\hyperlink{class_vertex}{Vertex}} * v, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{22     std::unordered\_map<std::string, Vertex *> \mbox{\hyperlink{class_graph_a4ddeb6a246dbe0ce0349f875eaad3554}{getStationSet}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a3b5af5d9fba5bac37ed469fa3d8e5f1b}{findAugmentingPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{25     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_aa749049707e4ba75f96ffb93f46583fe}{subFindAugmentingPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{26     \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_abe58a8343a698d6419be948f07ea1bd9}{findMinResidualAlongPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{27     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a0faaae3cf170bb522742079807896d05}{testAndVisit}}(std::queue<Vertex *>\& q, \mbox{\hyperlink{class_edge}{Edge}} *e, \mbox{\hyperlink{class_vertex}{Vertex}} *w, \textcolor{keywordtype}{int} residual);}
+\DoxyCodeLine{28     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a3a56b45f50a8a364d88b6670ed05ab5c}{augmentFlowAlongPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t, \textcolor{keywordtype}{int} f);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{comment}{//Operation Cost Optmization}}
+\DoxyCodeLine{31     std::pair<int,int> \mbox{\hyperlink{class_graph_a107afbe0e15e6ceb82f505d99d40883f}{costOptmizationMaxFlowPair}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{comment}{//Reliability and Sensitivity to Line Failures}}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ab2967d3d24c437497e8d8db0f592cc74}{generateSubGraph}}(std::vector<Vertex*> toRemove);}
+\DoxyCodeLine{35     std::vector<std::pair<Vertex*,int>> \mbox{\hyperlink{class_graph_a58c9b3e894f76e3d2a33e20bffd88e9b}{mostAffectedStations}}(\textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{//Basic Service Metrics}}
+\DoxyCodeLine{38     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a2d69f9ecb3200ae107298051931dcde9}{maxFlowPair}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{39     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a398ab7a83d7f2134a33c97cc865389f6}{subMaxFlowPair}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{40     std::pair<int, std::vector<Vertex *>> \mbox{\hyperlink{class_graph_a6733da7eceb10c1527d473afa3086104}{getPairsWithMaxFlow}}();}
+\DoxyCodeLine{41     std::vector<std::pair<std::string, int>> \mbox{\hyperlink{class_graph_a53ef082ede3ab6d83165ef040e6c41a2}{getBudgetPriorities}}(\textcolor{keywordtype}{bool} MorD, \textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{42     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_af687ad4f735d8978a1600cc0895639e5}{maxStationFlow}}(\mbox{\hyperlink{class_vertex}{Vertex}} *station);}
+\DoxyCodeLine{43     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_a29afed9063e8bcd8e11f57d08e5c3e1d}{submaxStationFlow}}(\mbox{\hyperlink{class_vertex}{Vertex}} *station);}
+\DoxyCodeLine{44 \};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJECT1\_GRAPH\_H}}
+\DoxyCodeLine{48 }
+
+\end{DoxyCode}

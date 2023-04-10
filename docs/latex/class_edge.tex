@@ -1,0 +1,267 @@
+\hypertarget{class_edge}{}\doxysection{Edge Class Reference}
+\label{class_edge}\index{Edge@{Edge}}
+
+
+{\ttfamily \#include $<$Vertex\+Edge.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_edge_ad2098ea24e3669c8e1f9e9e3a51ee911}{Edge}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$\mbox{\hyperlink{class_edge_a48f1521d20ead8492fd1d184656862f5}{orig}}, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$\mbox{\hyperlink{class_edge_a50339c1a85710ca827d4e3865727ffd7}{dest}}, int \mbox{\hyperlink{class_edge_ad606e57bc68898672de1727e299a7d65}{capacity}}, const std\+::string \&\mbox{\hyperlink{class_edge_ac69547757f15cdacca2f576b8a9acbb5}{service}})
+\item 
+\mbox{\hyperlink{class_edge_a03ed0c50c8b512af3b0f756befc912b9}{Edge}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$\mbox{\hyperlink{class_edge_a48f1521d20ead8492fd1d184656862f5}{orig}}, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$\mbox{\hyperlink{class_edge_a50339c1a85710ca827d4e3865727ffd7}{dest}}, int \mbox{\hyperlink{class_edge_ad606e57bc68898672de1727e299a7d65}{capacity}}, const std\+::string \&\mbox{\hyperlink{class_edge_ac69547757f15cdacca2f576b8a9acbb5}{service}}, \mbox{\hyperlink{class_edge}{Edge}} $\ast$\mbox{\hyperlink{class_edge_abcadfaa8985d0d593a124d0fea39130a}{reverse}})
+\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_edge_a5cda44e9ba257b03963a1ac301371a59}{get\+Dest}} () const
+\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_edge_a6e8b08e91c0694b40edff0432fb612eb}{get\+Orig}} () const
+\item 
+int \mbox{\hyperlink{class_edge_a225e92785fb02e0e985e19fe3346686b}{get\+Capacity}} () const
+\item 
+int \mbox{\hyperlink{class_edge_a478879d83662c4af625037f5eac3fc77}{get\+Occupied}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_edge_aad1613389f5aff8ee1527914cb3a00ea}{get\+Service}} ()
+\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_edge_a756d2d246aa5445d0f396626c7d4fd56}{get\+Reverse}} () const
+\item 
+int \mbox{\hyperlink{class_edge_aeeb5e8099e01faf1d059d6cd465596bd}{get\+Weight}} () const
+\item 
+bool \mbox{\hyperlink{class_edge_ae9b8f01ae03134cf97b3b86ae86c6a22}{get\+Switch}} ()
+\item 
+void \mbox{\hyperlink{class_edge_a7a67567dc6642313de50e3dc89d2a5a6}{switch\+Edge}} ()
+\item 
+void \mbox{\hyperlink{class_edge_a6e0939730fcdc9fc764df555d583b070}{set\+Occupied}} (int occup)
+\item 
+void \mbox{\hyperlink{class_edge_a4a92a4d32379830e0a9c16bbd6569ea4}{set\+Reverse}} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$rev)
+\item 
+void \mbox{\hyperlink{class_edge_ab6825c9ebefaa8a20ba3fc4a5af1521f}{reset}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_edge_a48f1521d20ead8492fd1d184656862f5}{orig}}
+\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_edge_a50339c1a85710ca827d4e3865727ffd7}{dest}}
+\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_edge_abcadfaa8985d0d593a124d0fea39130a}{reverse}} \{\}
+\item 
+std\+::string \mbox{\hyperlink{class_edge_ac69547757f15cdacca2f576b8a9acbb5}{service}}
+\item 
+int \mbox{\hyperlink{class_edge_ad606e57bc68898672de1727e299a7d65}{capacity}}
+\item 
+int \mbox{\hyperlink{class_edge_a1ef4183332f5b425bb5306e8246ebb5e}{occupied}} = 0
+\item 
+double \mbox{\hyperlink{class_edge_adbe59333b5a49cbb85b39ce1272e6098}{flow}} = 0
+\item 
+int \mbox{\hyperlink{class_edge_a4d58e1f4de38fa55549497175981ebab}{weight}}
+\item 
+bool \mbox{\hyperlink{class_edge_abb02a890a64baa9ae7f0dcd5188847ab}{subgraph}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_edge_ad2098ea24e3669c8e1f9e9e3a51ee911}\label{class_edge_ad2098ea24e3669c8e1f9e9e3a51ee911}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{orig,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{dest,  }\item[{int}]{capacity,  }\item[{const std\+::string \&}]{service }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_edge}{Edge}} constructor 
+\begin{DoxyParams}{Parameters}
+{\em orig} & edge\textquotesingle{}s origin \\
+\hline
+{\em dest} & edge\textquotesingle{}s destination \\
+\hline
+{\em capacity} & edge\textquotesingle{}s capacity \\
+\hline
+{\em service} & edge\textquotesingle{}s service \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a03ed0c50c8b512af3b0f756befc912b9}\label{class_edge_a03ed0c50c8b512af3b0f756befc912b9}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{orig,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{dest,  }\item[{int}]{capacity,  }\item[{const std\+::string \&}]{service,  }\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{reverse }\end{DoxyParamCaption})}
+
+\mbox{\hyperlink{class_edge}{Edge}} constructor 
+\begin{DoxyParams}{Parameters}
+{\em orig} & edge\textquotesingle{}s origin \\
+\hline
+{\em dest} & edge\textquotesingle{}s destination \\
+\hline
+{\em capacity} & edge\textquotesingle{}s capacity \\
+\hline
+{\em service} & edge\textquotesingle{}s service \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_edge_a225e92785fb02e0e985e19fe3346686b}\label{class_edge_a225e92785fb02e0e985e19fe3346686b}} 
+\index{Edge@{Edge}!getCapacity@{getCapacity}}
+\index{getCapacity@{getCapacity}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getCapacity()}{getCapacity()}}
+{\footnotesize\ttfamily int Edge\+::get\+Capacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+returns the edge\textquotesingle{}s maximum capacity \begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a5cda44e9ba257b03963a1ac301371a59}\label{class_edge_a5cda44e9ba257b03963a1ac301371a59}} 
+\index{Edge@{Edge}!getDest@{getDest}}
+\index{getDest@{getDest}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getDest()}{getDest()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ Edge\+::get\+Dest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+returns the edge\textquotesingle{}s Destination \begin{DoxyReturn}{Returns}
+Vertex$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a478879d83662c4af625037f5eac3fc77}\label{class_edge_a478879d83662c4af625037f5eac3fc77}} 
+\index{Edge@{Edge}!getOccupied@{getOccupied}}
+\index{getOccupied@{getOccupied}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getOccupied()}{getOccupied()}}
+{\footnotesize\ttfamily int Edge\+::get\+Occupied (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+returns the \mbox{\hyperlink{class_edge}{Edge}}\textquotesingle{}s occupation \begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a6e8b08e91c0694b40edff0432fb612eb}\label{class_edge_a6e8b08e91c0694b40edff0432fb612eb}} 
+\index{Edge@{Edge}!getOrig@{getOrig}}
+\index{getOrig@{getOrig}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getOrig()}{getOrig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ Edge\+::get\+Orig (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+returns the edge\textquotesingle{}s Origin \begin{DoxyReturn}{Returns}
+Vertex$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a756d2d246aa5445d0f396626c7d4fd56}\label{class_edge_a756d2d246aa5445d0f396626c7d4fd56}} 
+\index{Edge@{Edge}!getReverse@{getReverse}}
+\index{getReverse@{getReverse}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getReverse()}{getReverse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} $\ast$ Edge\+::get\+Reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+returns the \mbox{\hyperlink{class_edge}{Edge}}\textquotesingle{}s reverse edge \begin{DoxyReturn}{Returns}
+Edge$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_aad1613389f5aff8ee1527914cb3a00ea}\label{class_edge_aad1613389f5aff8ee1527914cb3a00ea}} 
+\index{Edge@{Edge}!getService@{getService}}
+\index{getService@{getService}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getService()}{getService()}}
+{\footnotesize\ttfamily std\+::string Edge\+::get\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns the edge\textquotesingle{}s service provider \begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_ae9b8f01ae03134cf97b3b86ae86c6a22}\label{class_edge_ae9b8f01ae03134cf97b3b86ae86c6a22}} 
+\index{Edge@{Edge}!getSwitch@{getSwitch}}
+\index{getSwitch@{getSwitch}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getSwitch()}{getSwitch()}}
+{\footnotesize\ttfamily bool Edge\+::get\+Switch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+returns wether or not the edge belongs in the subgraph \begin{DoxyReturn}{Returns}
+subgraph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_aeeb5e8099e01faf1d059d6cd465596bd}\label{class_edge_aeeb5e8099e01faf1d059d6cd465596bd}} 
+\index{Edge@{Edge}!getWeight@{getWeight}}
+\index{getWeight@{getWeight}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getWeight()}{getWeight()}}
+{\footnotesize\ttfamily int Edge\+::get\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+returns an edges train operation cost \begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_ab6825c9ebefaa8a20ba3fc4a5af1521f}\label{class_edge_ab6825c9ebefaa8a20ba3fc4a5af1521f}} 
+\index{Edge@{Edge}!reset@{reset}}
+\index{reset@{reset}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Edge\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+resets the edges occupation \mbox{\Hypertarget{class_edge_a6e0939730fcdc9fc764df555d583b070}\label{class_edge_a6e0939730fcdc9fc764df555d583b070}} 
+\index{Edge@{Edge}!setOccupied@{setOccupied}}
+\index{setOccupied@{setOccupied}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setOccupied()}{setOccupied()}}
+{\footnotesize\ttfamily void Edge\+::set\+Occupied (\begin{DoxyParamCaption}\item[{int}]{occup }\end{DoxyParamCaption})}
+
+sets the \mbox{\hyperlink{class_edge}{Edge}}\textquotesingle{}s occupation 
+\begin{DoxyParams}{Parameters}
+{\em occup} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a4a92a4d32379830e0a9c16bbd6569ea4}\label{class_edge_a4a92a4d32379830e0a9c16bbd6569ea4}} 
+\index{Edge@{Edge}!setReverse@{setReverse}}
+\index{setReverse@{setReverse}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setReverse()}{setReverse()}}
+{\footnotesize\ttfamily void Edge\+::set\+Reverse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{rev }\end{DoxyParamCaption})}
+
+sets an \mbox{\hyperlink{class_edge}{Edge}} as the reverse to this edge 
+\begin{DoxyParams}{Parameters}
+{\em rev} & reverse edge \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a7a67567dc6642313de50e3dc89d2a5a6}\label{class_edge_a7a67567dc6642313de50e3dc89d2a5a6}} 
+\index{Edge@{Edge}!switchEdge@{switchEdge}}
+\index{switchEdge@{switchEdge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{switchEdge()}{switchEdge()}}
+{\footnotesize\ttfamily void Edge\+::switch\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+switches wether or not the edge is in the subgraph 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_edge_ad606e57bc68898672de1727e299a7d65}\label{class_edge_ad606e57bc68898672de1727e299a7d65}} 
+\index{Edge@{Edge}!capacity@{capacity}}
+\index{capacity@{capacity}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{capacity}{capacity}}
+{\footnotesize\ttfamily int Edge\+::capacity\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_edge_a50339c1a85710ca827d4e3865727ffd7}\label{class_edge_a50339c1a85710ca827d4e3865727ffd7}} 
+\index{Edge@{Edge}!dest@{dest}}
+\index{dest@{dest}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{dest}{dest}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}}$\ast$ Edge\+::dest\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_edge_adbe59333b5a49cbb85b39ce1272e6098}\label{class_edge_adbe59333b5a49cbb85b39ce1272e6098}} 
+\index{Edge@{Edge}!flow@{flow}}
+\index{flow@{flow}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{flow}{flow}}
+{\footnotesize\ttfamily double Edge\+::flow = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_edge_a1ef4183332f5b425bb5306e8246ebb5e}\label{class_edge_a1ef4183332f5b425bb5306e8246ebb5e}} 
+\index{Edge@{Edge}!occupied@{occupied}}
+\index{occupied@{occupied}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{occupied}{occupied}}
+{\footnotesize\ttfamily int Edge\+::occupied = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_edge_a48f1521d20ead8492fd1d184656862f5}\label{class_edge_a48f1521d20ead8492fd1d184656862f5}} 
+\index{Edge@{Edge}!orig@{orig}}
+\index{orig@{orig}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{orig}{orig}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}}$\ast$ Edge\+::orig\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_edge_abcadfaa8985d0d593a124d0fea39130a}\label{class_edge_abcadfaa8985d0d593a124d0fea39130a}} 
+\index{Edge@{Edge}!reverse@{reverse}}
+\index{reverse@{reverse}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{reverse}{reverse}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}}$\ast$ Edge\+::reverse \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_edge_ac69547757f15cdacca2f576b8a9acbb5}\label{class_edge_ac69547757f15cdacca2f576b8a9acbb5}} 
+\index{Edge@{Edge}!service@{service}}
+\index{service@{service}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{service}{service}}
+{\footnotesize\ttfamily std\+::string Edge\+::service\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_edge_abb02a890a64baa9ae7f0dcd5188847ab}\label{class_edge_abb02a890a64baa9ae7f0dcd5188847ab}} 
+\index{Edge@{Edge}!subgraph@{subgraph}}
+\index{subgraph@{subgraph}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{subgraph}{subgraph}}
+{\footnotesize\ttfamily bool Edge\+::subgraph = true\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_edge_a4d58e1f4de38fa55549497175981ebab}\label{class_edge_a4d58e1f4de38fa55549497175981ebab}} 
+\index{Edge@{Edge}!weight@{weight}}
+\index{weight@{weight}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{weight}{weight}}
+{\footnotesize\ttfamily int Edge\+::weight\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+ZLAmo/\+One\+Drive/\+Documentos/\+Faculdade/\+FEUP/2\+Semestre/2\+Ano/\+DA/\+Project1/src/\mbox{\hyperlink{_vertex_edge_8h}{Vertex\+Edge.\+h}}\item 
+C\+:/\+Users/\+ZLAmo/\+One\+Drive/\+Documentos/\+Faculdade/\+FEUP/2\+Semestre/2\+Ano/\+DA/\+Project1/src/\mbox{\hyperlink{_vertex_edge_8cpp}{Vertex\+Edge.\+cpp}}\end{DoxyCompactItemize}
