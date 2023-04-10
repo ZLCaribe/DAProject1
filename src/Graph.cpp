@@ -12,7 +12,7 @@ Graph::Graph() = default;
 
 /**
  * Return a pointer to a Vertex, being given it's name. 
- * Compexity: O(1) in average but O(n) in the worst case
+ * Complexity: O(1) in average but O(n) in the worst case
  * @param name station's name
  * @return pointer to a vertex
  */
@@ -24,7 +24,7 @@ Vertex *Graph::findStation(const std::string& name) {
 
 /**
  * Adds a station to the graph. 
- * Compexity: O(1) in average but O(n) in the worst case
+ * Complexity: O(1) in average but O(n) in the worst case
  * @param name station's name
  * @param district station's district
  * @param municipality station's municipality
@@ -40,7 +40,7 @@ void Graph::addStation(const std::string& name, const std::string& district, con
 
 /**
  * Adds a edge to the graph
- * Compexity: O(n)
+ * Complexity: O(n)
  * @param orig edge's origin
  * @param dest edge's destination
  * @param capacity edge's capacity
@@ -71,8 +71,9 @@ std::unordered_map<std::string, Vertex *> Graph::getStationSet() const {
 
 /**
  * Calculate the maximum number of trains that can simultaneously travel between
- * two specific stations. Note that your implementation should take any valid source and destination
+ * two specific stations.
  * stations as input.
+ * Complexity: O(|V|*|E|^2)
  * @param s source station
  * @param t target station
  * @return maximum number of trains
@@ -95,8 +96,8 @@ int Graph::maxFlowPair(Vertex *s, Vertex *t) {
 
 /**
  * Calculate the maximum number of trains that can simultaneously travel between
- * two specific stations in a network of reduced connectivity. Note that your implementation should take any valid source and destination
- * stations as input.
+ * two specific stations in a network of reduced connectivity.
+ * Complexity: O(|V|*|E|^2)
  * @param s source station
  * @param t target station
  * @return maximum number of trains
@@ -120,6 +121,7 @@ int Graph::subMaxFlowPair(Vertex *s, Vertex *t) {
 /**
  * Determine, from all pairs of stations, which ones (if more than one) require the
  * most amount of trains when taking full advantage of the existing network capacity
+ * Complexity: O(|V|^2 * (|V| * |E|^2))
  * @return Stations with biggest flow capacity being the odd indexes stations the
  * source and the even indexes the target
  */
@@ -150,7 +152,7 @@ std::pair<int,std::vector<Vertex *>> Graph::getPairsWithMaxFlow() {
 /**
  * Report the maximum number of trains that can simultaneously arrive at a given station,
  * taking into consideration the entire railway grid.
- * Compexity: 
+ * Complexity: O(|V| * |E|^2)
  * @param station
  * @return maximum number of trains
  */
@@ -169,7 +171,7 @@ int Graph::maxStationFlow(Vertex *station) {
 /**
  * Report the maximum number of trains that can simultaneously arrive at a given station,
  * taking into consideration the entire railway grid in a network of reduced connectivity.
- * Compexity: 
+ * Complexity: O(|V| * |E|^2)
  * @param station
  * @return maximum number of trains
  */
@@ -188,7 +190,7 @@ int Graph::submaxStationFlow(Vertex *station) {
 /**
  * Calculate the maximum amount of trains that can simultaneously travel between
  * two specific stations with minimum cost for the company. 
- * Compexity: O(|E|+|V|)
+ * Complexity: O(|E|+|V|)
  * @param s source station
  * @param t target station
  * @return Minimum cost of the route
@@ -235,7 +237,7 @@ std::pair<int,int> Graph::costOptmizationMaxFlowPair(Vertex *s, Vertex *t) {
 
 /**
  * Creates a new graph that is a subgraph of the original one
- * Compexity: O(n)
+ * Complexity: O(n)
  * @return subgraph
  */
 void Graph::generateSubGraph(std::vector<Vertex*> edges) {
@@ -251,12 +253,10 @@ bool sortHelper(std::pair<Vertex*, int> a, std::pair<Vertex*, int> b){
 /**
  * Provide a report on the stations that are the most affected by each segment failure,
  * i.e., the top-k most affected stations for each segment to be considered.
- * Compexity: 
- * @param subgraph original with reduced connectivity
+ * Complexity: O( |V| * (|V| * |E|^2))
  * @param k number of station to return
- * @return vector of pairs(TODO maybe a heap, or anything that sort automatically could be a better idea)
- * where the first component is the name of the station and the second is how much the flow
- * of the station was reduced
+ * @return vector of pairs where the first component is the name of the station and the
+ * second is how much the flow of the station was reduced
  */
 std::vector<std::pair<Vertex*, int>> Graph::mostAffectedStations(int k) {
     int a, b;
@@ -276,9 +276,14 @@ std::vector<std::pair<Vertex*, int>> Graph::mostAffectedStations(int k) {
 	return result;
 }
 
+/**
+ * Finds a path with available flow starting at vertex s and ending at vertex t
+ * @param s starting point
+ * @param t ending point
+ * @return wheter or not there is an available path
+ */
 bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
     for(auto v : this->stationsSet) v.second->setVisited(false);
-    //BFS
     s->setVisited(true);
     std::queue<Vertex *> q;
     q.push(s);
@@ -295,9 +300,15 @@ bool Graph::findAugmentingPath(Vertex *s, Vertex *t) {
     return t->isVisited();
 }
 
+/**
+ * Finds a path with available flow in a network of reduced connectivity
+ * starting at vertex s and ending at vertex t
+ * @param s starting point
+ * @param t ending point
+ * @return wheter or not there is an available path
+ */
 bool Graph::subFindAugmentingPath(Vertex *s, Vertex *t) {
     for(auto v : this->stationsSet) v.second->setVisited(false);
-    //BFS
     s->setVisited(true);
     std::queue<Vertex *> q;
     q.push(s);
@@ -318,6 +329,9 @@ bool Graph::subFindAugmentingPath(Vertex *s, Vertex *t) {
     return t->isVisited();
 }
 
+/**
+ * Test if a vertex was visited and has available flow capacity then visit it
+ */
 void Graph::testAndVisit(std::queue<Vertex *>& q, Edge *e, Vertex *w, int residual) {
     if(!w->isVisited() && residual > 0){
         w->setVisited(true);
@@ -326,6 +340,12 @@ void Graph::testAndVisit(std::queue<Vertex *>& q, Edge *e, Vertex *w, int residu
     }
 }
 
+/**
+ * Finds the minimal residual flow along path between vertex s and t
+ * @param s start of the path
+ * @param t end of the path
+ * @return minimal residual flow along path
+ */
 int Graph::findMinResidualAlongPath(Vertex *s, Vertex *t) {
     int f = INT32_MAX;
     for (auto v = t; v != s; ) {
@@ -342,6 +362,12 @@ int Graph::findMinResidualAlongPath(Vertex *s, Vertex *t) {
     return f;
 }
 
+/**
+ * Updates vertexes flow values along path
+ * @param s start of the path
+ * @param t end of the path
+ * @param f new flow
+ */
 void Graph::augmentFlowAlongPath(Vertex *s, Vertex *t, int f) {
     for(auto v = t; v != s;){
         auto e = v->getPath();
@@ -358,7 +384,7 @@ void Graph::augmentFlowAlongPath(Vertex *s, Vertex *t, int f) {
 
 /**
  * Removes a station from the set. 
- * Compexity: O(1) in average but O(n) in the worst case
+ * Complexity: O(1) in average but O(n) in the worst case
  * @param v Vertex to be removed
  */
 void Graph::removeStation(Vertex *v) {
@@ -367,7 +393,7 @@ void Graph::removeStation(Vertex *v) {
 
 /**
  * Removes a edge from the set
- * Compexity: O(n)
+ * Complexity: O(n)
  * @param v origin Vertex to be removed
  * @param t origin Vertex to be removed
  */
@@ -380,7 +406,15 @@ bool compPair(const std::pair<std::string, int>& p1, const std::pair<std::string
     return p1.second > p2.second;
 }
 
-
+/**
+ * Report the top-k municipalities and districts, regarding their transportation needs
+ * Complexity: O(|V| * (|V| * |E|^2))
+ * @param MorD if true it will calculate municipalities if false it will calculate districts
+ * @param k top-k municipalities/districts
+ * @return vector of pairs in descending order by the second  attribute
+ * the first atribute is the municipality/disctrict the second is the sum the maxStationFlow
+ * of it's stations
+ */
 std::vector<std::pair<std::string, int>> Graph::getBudgetPriorities(bool MorD, int k) {
     std::unordered_map<std::string ,int> r;
     for(const auto& it : this->stationsSet){

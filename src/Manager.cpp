@@ -257,18 +257,6 @@ void Manager::lineFailuresMenu() {
                 break;
         }
     }
-
-    /*
-    int k;
-    cout << "Insira o top-k estacoes afetadas que pretende ver: ";
-    cin >> k;
-    auto report = this->graph.mostAffectedStations(subgraph,k);
-    int j = 1;
-    cout << "Top " << k << " estacoes mais afetadas pelas falhas:" << endl;
-    for(auto x : report){
-        cout << "Top " << j++ << ":" << x.first.getName() << endl;
-        cout << "Reducao no fluxo" << x.second << endl << endl;
-    }*/
 }
 
 Vertex *Manager::inputStation(const string& message) {
